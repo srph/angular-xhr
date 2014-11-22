@@ -1,4 +1,7 @@
 +function(angular, undefined) {
+  angular.module('srph.xhr', []);
+}(angular);
++function(angular, undefined) {
   'use strict';
 
   angular
