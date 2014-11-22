@@ -1,26 +1,39 @@
 angular-xhr
 ==============
 
-Submit XHRs with directives! This means less code for your controllers.
+Submit XHRs with directives.
+
+- Less lines of code for your controllers.
+- Explicitly address your XHRs.
+- Minus one dependency (```$http```) for your controller.
 
 ## Installation
 
 You may grab the build, or from bower!
 
-```
+```bash
 bower install angular-srph-xhr
 ```
 
-## Example
+While it is also possible to use the one provided by CDNs
 
-See the docs / live demo [here](https://srph.github.io/angular-xhr)
+```html
+<script src="https://cdn.rawgit.com/srph/angular-xhr/dist/angular-srph-xhr.js"></script>
+<script src="https://cdn.rawgit.com/srph/angular-xhr/dist/angular-srph-xhr.min.js"></script>
+```
+
+## Docs / Examples
+
+See the docs [here](https://srph.github.io/reference.html), and the demos [here](https://srph.github.io/angular-xhr/).
 
 ## Contribution
+
+For features or fixes, I would suggest to submit an issue first before submitting a pull request. This avoids closed pull-requests; useless work.
+
+Don't forget to add tests if necessary.
 
 ```
 =========      ================
 | issue |  ->  | pull-request |
 =========      ================
 ```
-
-For feats, I would suggest to submit an issue first before submitting a pull request. This avoids closed pull-requests.

@@ -12,6 +12,7 @@ gulp.task('build', ['build-all', 'uglify']);
 
 gulp.task('default', function() {
   gulp.run('build');
+  gulp.run('server');
 
   gulp.watch(paths.src + '*.js', ['build']);
   gulp.watch(paths.dist + 'angular-srph-xhr.js', ['uglify']);

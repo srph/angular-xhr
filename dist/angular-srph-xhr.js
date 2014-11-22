@@ -12,7 +12,7 @@
   function providerBlock() {
     var _this = this; // Ref
 
-    _this.setDefaultURL = setDefaultURL;
+    _this.setBaseURL = setBaseURL;
     _this.$get = $get;
 
     // ---------------------------------
@@ -34,15 +34,25 @@
 
     // Set defaults
     _this.baseURL = defaults.baseURL;
-    _this.params = defaults.headers;
+    _this.params = defaults.params;
     _this.headers = defaults.headers;
     _this.extraFields = defaults.extraFields;
 
     // -------------------------------------
 
     /** baseURL setter */
-    function setDefaultURL(url) {
+    function setBaseURL(url) {
       _this.baseURL = processURL(url);
+    }
+
+    /** Set default headers */
+    function setHeaders(headers) {
+      _this.headers = headers;
+    }
+
+    /** Set default fields */
+    function setExtraFields(fields) {
+      _this.extraFields = fields;
     }
 
     /** Factory | $get */
