@@ -37,3 +37,7 @@ Don't forget to add tests if necessary.
 | issue |  ->  | pull-request |
 =========      ================
 ```
+
+## Changelogs
+
+View from the [repository](https://github.com/srph/angular-xhr/blob/gh-pages/CHANGELOG.md)
