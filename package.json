@@ -1,8 +1,8 @@
 {
-  "name": "angular-submit",
-  "version": "1.0.0",
+  "name": "angular-xhr",
+  "version": "0.1",
   "description": "",
-  "main": "gulpfile.js",
+  "main": "dist/angular-srph-xhr.js",
   "directories": {
     "test": "tests"
   },
