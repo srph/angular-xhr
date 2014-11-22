@@ -8,10 +8,9 @@ var gulp = require('gulp')
 
 gulp.task('build-all', function() {
   var src = [
-    paths.dist + '{*|!angular-srph-xhr}.js',
     paths.src + 'module.js',
-    paths.src + 'provider.js'
-  ];
+    paths.src + '*.js',
+  ]
 
   return gulp.src(src)
     .pipe(plumber())

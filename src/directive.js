@@ -17,15 +17,16 @@
       scope: scope,
       restrict: 'EA',
       replace: true,
-      template: template,
       link: linkFn,
       bindToController: true,
       controllerAs: 'xhrCtrl',
       controller: 'SRPHXHRController'
     }
 
-    function linkFn(element, scope, attributes, controller) {
+    function linkFn(scope, element, attributes, controller) {
       var tag = element.prop("tagName");
+
+      console.log(tag);
 
       if ( tag === 'form' ) {
         element.on('submit', xhr);
@@ -35,7 +36,7 @@
 
       /** Call controller request */
       function xhr(e) {
-        e.preventDefault();
+        // e.preventDefault();
         controller.request( controller.data );
       }
     }

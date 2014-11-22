@@ -2,6 +2,76 @@
   angular.module('srph.xhr', []);
 }(angular);
 +function(angular, undefined) {
+  angular
+    .module('srph.xhr')
+    .controller('SRPHXHRController', XHRController);
+
+  function XHRController($scope, srphXhrFactory) {
+    var vm = this
+      , factory = srphXhrFactory; // Shorthand
+
+    vm.request = request;
+
+    /** Sends a request to the server */
+    function request(data) {
+      var options = {
+        url: vm.url,
+        type: vm.type,
+        data: data
+      };
+
+      factory.request(options)
+        .then(vm.successCb || angular.noop)
+        .catch(vm.errorCb || angular.noop);
+    }
+  }
+  XHRController.$inject = ["$scope", "srphXhrFactory"];
+}(angular);
++function(angular, undefined) {
+  angular
+    .module('srph.xhr')
+    .directive('srphXhr', directive);
+
+  function directive() {
+    var scope = {
+      url: '@srphXhr',
+      type: '@requestType',
+      data: '=requestData',
+      successCb: '=requestSuccess',
+      errorCb: '=requestError'
+    };
+
+    // Directive properties
+    return {
+      scope: scope,
+      restrict: 'EA',
+      replace: true,
+      link: linkFn,
+      bindToController: true,
+      controllerAs: 'xhrCtrl',
+      controller: 'SRPHXHRController'
+    }
+
+    function linkFn(scope, element, attributes, controller) {
+      var tag = element.prop("tagName");
+
+      console.log(tag);
+
+      if ( tag === 'form' ) {
+        element.on('submit', xhr);
+      } else {
+        element.on('click', xhr);
+      }
+
+      /** Call controller request */
+      function xhr(e) {
+        // e.preventDefault();
+        controller.request( controller.data );
+      }
+    }
+  }
+}(angular);
++function(angular, undefined) {
   'use strict';
 
   angular
@@ -13,6 +83,9 @@
     var _this = this; // Ref
 
     _this.setBaseURL = setBaseURL;
+    _this.setHeaders = setHeaders;
+    _this.setCache = setCache;
+    _this.setParams = setParams;
     _this.$get = $get;
 
     // ---------------------------------
@@ -29,36 +102,53 @@
       baseURL: '/',
       params: [],
       headers: [],
-      extraFields: []
-    }
+      cache: false
+    };
 
     // Set defaults
     _this.baseURL = defaults.baseURL;
     _this.params = defaults.params;
     _this.headers = defaults.headers;
-    _this.extraFields = defaults.extraFields;
+    _this.cache = defaults.cache;
 
     // -------------------------------------
 
-    /** baseURL setter */
+    /**
+     * baseURL setter
+     * @param {string} url
+     */
     function setBaseURL(url) {
       _this.baseURL = processURL(url);
     }
 
-    /** Set default headers */
+    /**
+     * Set default headers
+     * @param {Array} headers
+     */
     function setHeaders(headers) {
       _this.headers = headers;
     }
 
-    /** Set default fields */
-    function setExtraFields(fields) {
-      _this.extraFields = fields;
+    /**
+     * Set default parameters for each request
+     * @param {Array} params
+     */
+    function setParams(params) {
+      _this.params = params;
+    }
+
+    /**
+     * enable/disable cache for each request
+     * @param {boolean} bool
+     */
+    function setCache(bool) {
+      _this.cache = ( !angular.isUndefined(bool) ) ? bool : true;
     }
 
     /** Factory | $get */
     function $get($http) {
       return {
-        requests: requests,
+        request: request,
         processURL: processURL,
         getFullURL: getFullURL,
         isAbsoluteURL: isAbsoluteURL
@@ -72,30 +162,22 @@
        */
       function request(options) {
         var request // Selected request
-          , requests // Request options
           // Shorthands
           , type = options.type
           , data = options.data
-          , url  = this.getFullURL(options.url);
+          , url  = this.getFullURL(options.url)
+          , headers = _this.headers
+          , params = _this.params
+          , cache = _this.cache;
 
-         requests = { 
-          get: function() {
-            return $http.get(url)
-          },
-          post: function() {
-            return $http.post(url, data)
-          },
-          put: function() {
-            return $http.put(url, data);
-          }
-        };
-
-        request = (
-          requests[type] ||
-          requests['get']
-        )();
-
-        return request;
+        return $http({
+          url: url,
+          method: type,
+          data: data,
+          headers: headers,
+          params: params,
+          cache: cache
+        });
       }
     }
 

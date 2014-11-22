@@ -75,7 +75,7 @@
     /** Factory | $get */
     function $get($http) {
       return {
-        requests: requests,
+        request: request,
         processURL: processURL,
         getFullURL: getFullURL,
         isAbsoluteURL: isAbsoluteURL
@@ -99,7 +99,7 @@
 
         return $http({
           url: url,
-          method: method,
+          method: type,
           data: data,
           headers: headers,
           params: params,

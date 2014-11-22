@@ -4,7 +4,8 @@
     .controller('SRPHXHRController', XHRController);
 
   function XHRController($scope, srphXhrFactory) {
-    var vm = this;
+    var vm = this
+      , factory = srphXhrFactory; // Shorthand
 
     vm.request = request;
 
@@ -16,9 +17,9 @@
         data: data
       };
 
-      factory(options)
-        .then(callback.success)
-        .catch(callback.error);
+      factory.request(options)
+        .then(vm.successCb || angular.noop)
+        .catch(vm.errorCb || angular.noop);
     }
   }
 }(angular);

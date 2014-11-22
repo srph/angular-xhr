@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--
+  Angular XHR - (c) 2014 Kier Borromeo
+  @link http://srph.github.io | @srph
+  @license MIT
+   __   .__                                    .__ 
+  |  | _|__| ___________  ______   ____   ____ |__|
+  |  |/ /  |/ __ \_  __ \ \____ \ /  _ \ / ___\|  |
+  |    <|  \  ___/|  | \/ |  |_> >  <_> ) /_/  >  |
+  |__|_ \__|\___  >__|    |   __/ \____/\___  /|__|
+       \/       \/        |__|         /_____/     
+-->
+<html>
+<head>
+  <title>Hey</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .container {
+      width: 600px;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+  </style>
+</head>
+<body>
+  <main class="container text-center">
+    <h1> Angular XHR </h1>
+    <a href="//github.com/srph/angular-xhr"> Github </a> /
+    <a href="../"> Doc </a> /
+    <a href="../reference.html"> API Reference </a>
+    <hr>
+
+    <h4> Basic Demo <small>(Expect an error response!)</small> </small> </h4>
+    <div class="row" ng-controller="ExampleCtrl as exCtrl">
+      <section class="col-md-6">
+        <p> Submit an XHR with a button </p>
+
+        <div class="form-group">
+          <button type="button"
+            class="btn btn-danger"
+            srph-xhr="api/v1/asdasd"
+            request-type="post"
+            request-data="exCtrl.data"
+            request-success="exCtrl.success"
+            request-error="exCtrl.error">
+            Clickity Click
+          </button>
+        </div>
+
+        <a href="../reference.html#api-reference-directive-form"> See example code from the API </a>
+      </section>
+
+      <section class="col-md-6">
+        <p> Submit an XHR with a form </p>
+
+        <form srph-xhr="api/v1/asdasd"
+          request-type="post"
+          request-data="exCtrl.data"
+          request-success="exCtrl.success"
+          request-error="exCtrl.error"
+          class="form-group">
+          <button type="submit" class="btn btn-danger">
+            Clickity Click
+          </button>
+        </form>
+
+        <a href="../reference.html#api-reference-directive-button"> See example code from the API </a>
+      </section>
+    </div>
+  </main>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular.min.js"></script>
+  <script src="../dist/angular-srph-xhr.js"></script>
+  <script>
+    +function($, angular, undefined) {
+      angular
+        .module('app', ['srph.xhr'])
+        .controller('ExampleCtrl', ExampleCtrl);
+
+      function ExampleCtrl($scope) {
+        var vm = this;
+
+        vm.data = {};
+
+        vm.success = function(response) {
+          alert(response);
+        }
+
+        vm.error = function() {
+          alert('An error has occured');
+        }
+      }
+
+      angular.bootstrap(document, ['app']);
+    }(jQuery, angular);
+  </script>
+</body>
+</html>

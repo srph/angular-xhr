@@ -15,9 +15,9 @@ This library offers a small, simple API provided through the ```srph-xhr``` dire
  <button srph-xhr="/api/v1/users"></button>
 ```
 
-### Example
+Here are some examples with a button and form (which you most likely will use).
 
-Here's examples with a button and form (which you most likely will use).
+### Button
 
 This **button** sends a request to ```api/v1/users``` as ```post``` with the data from your controller ```$scope```'s ```myFormData```
 
@@ -29,6 +29,8 @@ This **button** sends a request to ```api/v1/users``` as ```post``` with the dat
   Save this user
 </button>
 ```
+
+### Form
 
 This **form** sends a request (on submit) to ```api/v1/users/{id}``` as ```put``` with the data from your controller ```$scope```'s ```myFormData```
 
