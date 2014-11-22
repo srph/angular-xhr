@@ -1,8 +1,9 @@
 ## v0.1.1 - November 23, 2014
 
 ### Provider
-- Added ```setHeaders```, ```setCache```, ```setParams```
+- Added ```setHeaders```, ```setCache```, ```setParams```. ```setHeaders``` was not added on the last version.
 - Fixed typo errors
+- Removed ```setExtraHeaders``` (idk y i added this)
 
 ### Directive
 

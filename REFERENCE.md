@@ -80,4 +80,5 @@ Option | Type | Default | Description
 ------ | ---- | ------- | -----------
 setBaseURL | string | '/' | Base URLs of the all requests.
 setHeaders | array | [] | Default headers included in all requests.
-setExtraFields | array | [] | Default extra fields included in all requests.
+setCache | bool | false | Enable/disable cache by default in all requests.
+setParams | array | []] | Default params included in all requests.
