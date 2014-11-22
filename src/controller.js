@@ -9,35 +9,14 @@
     vm.request = request;
 
     /** Sends a request to the server */
-    function request(options, data) {
-      // Shorthand
-      var request,
-          type = options.type,
-          data = options.data,
-          url  = srphXhrFactory.getFullURL(options.url);
-
-      // --
-      var callback = {
-        error: vm.error || angular.noop,
-        success: vm.success || angular.noop
+    function request(data) {
+      var options = {
+        url: vm.url,
+        type: vm.type,
+        data: data
       };
 
-      /** Types of XHR */
-      var requests = { 
-        get: function() {
-          return $http.get(url)
-        },
-        post: function() {
-          return $http.post(url, data)
-        },
-        put: function() {
-          return $http.put(url, data);
-        }
-      };
-
-      request = (requests[type] || requests['get']);
-
-      request()
+      factory(options)
         .then(callback.success)
         .catch(callback.error);
     }

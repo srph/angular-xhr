@@ -12,6 +12,8 @@
     _this.setDefaultURL = setDefaultURL;
     _this.$get = $get;
 
+    // ---------------------------------
+
     /** Regex patterns */
     var patterns = {
       absoluteURL: /^[http|https]?:\/\//i,
@@ -41,12 +43,47 @@
     }
 
     /** Factory | $get */
-    function $get() {
+    function $get($http) {
       return {
+        requests: requests
         processURL: processURL,
         getFullURL: getFullURL,
         isAbsoluteURL: isAbsoluteURL
       };
+
+      /**
+       * Sends a request to the server
+       * @param  {Object} options [options needed for the requests]
+       * @param  {Object|Data} data [data to be sent to the server]
+       * @return promise
+       */
+      function request(options) {
+        var request // Selected request
+          , requests // Request options
+          // Shorthands
+          , type = options.type
+          , data = options.data
+          , url  = this.getFullURL(options.url);
+
+         requests = { 
+          get: function() {
+            return $http.get(url)
+          },
+          post: function() {
+            return $http.post(url, data)
+          },
+          put: function() {
+            return $http.put(url, data);
+          }
+        };
+
+        request = (
+          requests[type] ||
+          requests['get']
+        )();
+
+        return request;
+      }
     }
 
     // -------------------------------------

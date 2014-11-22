@@ -25,9 +25,19 @@
     }
 
     function linkFn(element, scope, attributes, controller) {
-      element.on('click', function XHROnClick() {
+      var tag = element.prop("tagName");
+
+      if ( tag === 'form' ) {
+        element.on('submit', xhr);
+      } else {
+        element.on('click', xhr);
+      }
+
+      /** Call controller request */
+      function xhr(e) {
+        e.preventDefault();
         controller.request( controller.data );
-      });
+      }
     }
   }
 }(angular);
