@@ -4,6 +4,7 @@
   "authors": [
     "srph <seraphipod@gmail.com>"
   ],
+  "description": "Submit XHRs with directives.",
   "main": "dist/angular-srph-xhr.js",
   "license": "MIT",
   "ignore": [
