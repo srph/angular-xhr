@@ -55,7 +55,9 @@
       <section class="col-md-6">
         <p> Submit an XHR with a form </p>
 
-        <form srph-xhr="api/v1/asdasd"
+        (Should give you a success or blank response if you are logged in to Github)
+
+        <form srph-xhr="https://api.github.com/user/repos"
           request-type="post"
           request-data="exCtrl.data"
           request-success="exCtrl.success"

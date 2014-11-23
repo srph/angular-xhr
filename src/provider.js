@@ -19,7 +19,7 @@
 
     /** Regex patterns */
     var patterns = {
-      absoluteURL: /^[http|https]?:\/\//i,
+      absoluteURL: /^(http|ftp|https)?:\/\//i,
       forwardSlashes: /^\//,
       trailingSlashes: /\/$/,
     };
