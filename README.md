@@ -24,7 +24,7 @@ While it is also possible to use the one provided by CDNs
 
 ## Docs / Examples
 
-See the docs [here](https://srph.github.io/reference.html), and the demos [here](https://srph.github.io/angular-xhr/examples).
+See the docs [here](https://srph.github.io/angular-xhr/reference.html), and the demos [here](https://srph.github.io/angular-xhr/examples).
 
 ## Contribution
 
