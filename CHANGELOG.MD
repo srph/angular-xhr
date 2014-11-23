@@ -1,3 +1,8 @@
+## v0.1.2 - November 23, 2014
+
+### Provider / Service
+- Fixed Absolute URL regex
+
 ## v0.1.1 - November 23, 2014
 
 ### Provider
