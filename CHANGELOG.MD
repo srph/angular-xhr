@@ -1,3 +1,9 @@
+## v0.1.6 - November 24, 2014
+
+### Directive
+
+- Fixed supposed-to-be forms from submitting a request when clicked.
+
 ## v0.1.5 - November 24, 2014
 
 ### Provider

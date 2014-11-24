@@ -57,7 +57,7 @@
 
       console.log(tag);
 
-      if ( tag === 'form' ) {
+      if ( tag.toLowerCase() === 'form' ) {
         element.on('submit', xhr);
       } else {
         element.on('click', xhr);
