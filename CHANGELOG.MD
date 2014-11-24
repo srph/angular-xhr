@@ -1,3 +1,9 @@
+## 0v.1.3 - November 24, 2014
+
+### Provider
+
+- Fixed substring fn being used instead of substr. Typo.
+
 ## v0.1.2 - November 23, 2014
 
 ### Provider / Service

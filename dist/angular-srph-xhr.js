@@ -205,7 +205,7 @@
      */
     function processURL(url) {
       if ( patterns.trailingSlashes.test(url) ) {
-        url = substring(0, url.length - 1);
+        url = substr(0, url.length - 1);
       }
 
       return url;

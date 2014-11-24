@@ -59,18 +59,18 @@ Our provider (```srphXhrFactory```) allows you to set base urls, settings, and a
 
 ### Usage
 
-Inject ```srphXhrFactory``` in your config, then invoke some methods available in the provider API
+Inject ```srphXhrFactoryProvider``` in your config, then invoke some methods available in the provider API
 
 ```javascript
 angular
   .module('myApp')
   .config(config);
 
-config.$inject('srphXhrFactory', ..);
+config.$inject('srphXhrFactoryProvider', ..);
 
-function config(srphXhrFactory, ..other dependencies) {
+function config(srphXhrFactoryProvider, ..other dependencies) {
   // Code here..
-  srphXhrFactory.setBaseUrl('https://api.myapp.com/api/v1/');
+  srphXhrFactoryProvider.setBaseURL('https://api.myapp.com/api/v1/');
 }
 ```
 
