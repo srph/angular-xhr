@@ -192,7 +192,7 @@
       // Append base URL is if not an aboslute url.
       // Return omitted trailing slashes
       if ( !isAbsoluteURL(url) ) { 
-        url = this.baseURL + '/' + url;
+        url = _this.baseURL + '/' + url;
       }
 
       return processURL(url);

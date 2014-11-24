@@ -1,3 +1,9 @@
+## v0.1.5 - November 24, 2014
+
+### Provider
+
+- Fixed undefined base url.
+
 ## v0.1.4 - November 24, 2014
 
 ### Provider
