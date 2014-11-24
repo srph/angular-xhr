@@ -1,3 +1,9 @@
+## v0.1.4 - November 24, 2014
+
+### Provider
+
+- Fixed misusage of substring fn (substr() instead of {String}.substr())
+
 ## v0.1.3 - November 24, 2014
 
 ### Provider
