@@ -1,4 +1,4 @@
-## 0v.1.3 - November 24, 2014
+## v0.1.3 - November 24, 2014
 
 ### Provider
 
