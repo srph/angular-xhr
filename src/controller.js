@@ -9,7 +9,13 @@
 
     vm.request = request;
 
-    /** Sends a request to the server */
+    /**
+     * Sends a request to the server
+     * @see srphXhrFactroy
+     * @see srphXhrFactory.request
+     * @param  {Object} data [Data to be sent along with the request]
+     * @return {promise}
+     */
     function request(data) {
       var options = {
         url: vm.url,

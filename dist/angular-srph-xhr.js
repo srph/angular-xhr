@@ -1,4 +1,10 @@
 +function(angular, undefined) {
+
+  /**
+   * @author Kier Borromeo (srph)
+   * @link //github.com/srph
+   * @repository //github.com/srph/angular-xhr
+   */
   angular.module('srph.xhr', []);
 }(angular);
 +function(angular, undefined) {
@@ -12,7 +18,13 @@
 
     vm.request = request;
 
-    /** Sends a request to the server */
+    /**
+     * Sends a request to the server
+     * @see srphXhrFactroy
+     * @see srphXhrFactory.request
+     * @param  {Object} data [Data to be sent along with the request]
+     * @return {promise}
+     */
     function request(data) {
       var options = {
         url: vm.url,
@@ -34,36 +46,54 @@
 
   function directive() {
     var scope = {
-      url: '@srphXhr',
-      type: '@requestType',
-      data: '=requestData',
-      successCb: '=requestSuccess',
-      errorCb: '=requestError'
+      url: '@srphXhr', // URL of the request
+      type: '@requestType', // Type of the request
+      data: '=requestData', // Data to be sent with the request
+      successCb: '=requestSuccess', // Callback to be executed if request was successful
+      errorCb: '=requestError' // Callback to be executed if request was settled with an error
     };
 
     // Directive properties
     return {
       scope: scope,
       restrict: 'EA',
-      replace: true,
+      // replace: true, 
       link: linkFn,
       bindToController: true,
       controllerAs: 'xhrCtrl',
       controller: 'SRPHXHRController'
     }
 
+    /**
+     * Creates a binding according to the
+     * provided tag which executes
+     * our CONTROLLER "request" method
+     * 
+     * @see SRPHXHRController
+     * @see SRPHXHRController.request
+     */
     function linkFn(scope, element, attributes, controller) {
+      // Gets the tag name of the element
+      // which the directive is applied to:
+      // extracts "FORM" from <form srph-xhr="...">
       var tag = element.prop("tagName");
 
-      console.log(tag);
+      // Properly an event listener depending
+      // on the tag
+      switch( tag.toLowerCase() ) {
+        case 'form':
+          element.on('submit', xhr);
+          break;
 
-      if ( tag.toLowerCase() === 'form' ) {
-        element.on('submit', xhr);
-      } else {
-        element.on('click', xhr);
+        default:
+          element.on('click', xhr);
+          break;
       }
 
-      /** Call controller request */
+      /**
+       * Call controller "request"
+       * @param  {event} e
+       */
       function xhr(e) {
         // e.preventDefault();
         controller.request( controller.data );
