@@ -7,9 +7,7 @@ This library provides a directive (```srph-xhr```) and provider (```srphXhrFacto
 
 ### Usage
 
-You may use use both the attribute (```<div this-directive>```) and element forms (```<that-directive..></that-directive..>```) whatever addresses your needs.
-
-This library offers a small, simple API provided through the ```srph-xhr``` directive.
+This library offers a small, simple API provided through the ```srph-xhr``` directive. This code sends a ```GET``` to ```api/v1/users```.
 
 ```html
  <button srph-xhr="/api/v1/users"></button>
@@ -19,7 +17,7 @@ Here are some examples with a button and form (which you most likely will use).
 
 ### Button
 
-This **button** sends a request to ```api/v1/users``` as ```post``` with the data from your controller ```$scope```'s ```myFormData```
+This **button** sends a request to ```api/v1/users```(```srph-xhr```) as ```post```(```request-type```) with the data from your controller ```$scope```'s ```myFormData```(```request-data```)
 
 ```html
 <button type="button"
@@ -45,6 +43,8 @@ This **form** sends a request (on submit) to ```api/v1/users/{id}``` as ```put``
 
 ### API
 
+You may use use both the attribute (```<div this-directive>```) and element forms (```<that-directive..></that-directive..>```) whatever addresses your needs.
+
 Option | Type | Default | Description
 ------ | ---- | ------- | -----------
 srph-xhr (request-url) | string | '/' | URL of the request. Simply pass ```www```, ```http(s)``` for absolute urls
@@ -55,7 +55,7 @@ request-error | function | noop | error callback
 
 ## Provider
 
-Our provider (```srphXhrFactory```) allows you to set base urls, settings, and all that sort. While it is also possible to override them with the directives (check the [Directive API](#api-reference-directive-api)).
+Our provider (```srphXhrFactoryProvider```) allows you to set base urls, settings, and all that sort. While it is also possible to override them with the directives (check the [Directive API](#api-reference-directive-api)).
 
 ### Usage
 

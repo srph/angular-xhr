@@ -24,7 +24,7 @@ While it is also possible to use the one provided by CDNs
 
 ## Docs / Examples
 
-See the docs [here](https://srph.github.io/angular-xhr), and the demos [here](https://srph.github.io/angular-xhr/examples).
+See the introductory docs [here](https://srph.github.io/angular-xhr), [API reference / docs](https://srph.github.io/angular-xhr/reference.html), and the demos [here](https://srph.github.io/angular-xhr/examples).
 
 ## Contribution
 
@@ -40,4 +40,4 @@ Don't forget to add tests if necessary.
 
 ## Changelogs
 
-View from the [repository](https://github.com/srph/angular-xhr/blob/gh-pages/CHANGELOG.md)
+View [file](https://github.com/srph/angular-xhr/blob/gh-pages/CHANGELOG.md).
