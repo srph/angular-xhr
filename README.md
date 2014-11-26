@@ -1,7 +1,7 @@
 angular-xhr
 ==============
 
-Submit XHRs with directives.
+Send ```$http``` requests with directives.
 
 - Less lines of code for your controllers.
 - Explicitly address your XHRs.
