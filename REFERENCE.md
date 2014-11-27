@@ -5,9 +5,11 @@ This library provides a directive (```srph-xhr```) and provider (```srphXhrFacto
 
 ## Directive
 
+This library offers a small, simple API provided through the ```srph-xhr``` directive.
+
 ### Usage
 
-This library offers a small, simple API provided through the ```srph-xhr``` directive. This code sends a ```GET``` to ```api/v1/users```.
+This code sends a ```GET``` to ```api/v1/users```.
 
 ```html
  <button srph-xhr="/api/v1/users"></button>
