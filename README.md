@@ -15,10 +15,17 @@ You may grab the build, or from bower!
 bower install angular-srph-xhr
 ```
 
-While it is also possible to use the one provided by CDNs
+While it is also possible to use the one provided by CDNs.
 
 ```html
 <script src="https://cdn.rawgit.com/srph/angular-xhr/dist/angular-srph-xhr.js"></script>
+<script src="https://cdn.rawgit.com/srph/angular-xhr/dist/angular-srph-xhr.min.js"></script>
+```
+
+Specify the library (```angular-srph-xhr.js``` or ```angular-srph-xhr.min.js```) in your HTML after angular, like so. It **must be** in proper order.
+
+```html
+<script src="cdn..../angular.min.js"></script>
 <script src="https://cdn.rawgit.com/srph/angular-xhr/dist/angular-srph-xhr.min.js"></script>
 ```
 
@@ -30,13 +37,13 @@ See the introductory docs [here](https://srph.github.io/angular-xhr), [API refer
 
 For features or fixes, I would suggest to submit an issue first before submitting a pull request. This avoids closed pull-requests; useless work.
 
-Don't forget to add tests if necessary.
-
 ```
 =========      ================
 | issue |  ->  | pull-request |
 =========      ================
 ```
+
+*Don't forget to add tests if necessary.
 
 ## Changelogs
 
