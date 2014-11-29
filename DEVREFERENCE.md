@@ -41,7 +41,7 @@ You may use ```gulp-server``` to test by accessing ```localhost:6969```; ```gulp
 
 ## How it works
 
-Our directive (```srph-xhr```, ```directive.js```) is the quintessential part of the app, it uses a controller (```SRPHXHRController```, ```controller.js```) to use the isolate scope and use our factory(```srphXhrFactory```, ```provider.js```)'s request method.
+Our directive (```srph-xhr```, ```directive.js```) is the quintessential part of the app. It adds the proper listener (depending on the tag which it was used with, e.g.: ```<form srph-xhr..>```). It executes the controller's request (```SRPHXHRController```, ```controller.js```), taking arguments from the passed arguments in the isolated scope, which uses our factory(```srphXhrFactory```, ```provider.js```)'s request method.
 
 Our provider (```srphXhrFactoryProvider```, ```provider.js```) only handles basic, default and custom settings; also contains methods essential for processing URLs and requests.
 
