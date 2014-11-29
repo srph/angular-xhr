@@ -43,6 +43,10 @@ For features or fixes, I would suggest to submit an issue first before submittin
 =========      ================
 ```
 
+### Developers | Contributors
+
+Make sure to check the [Developer Reference doc](//github.com/srph/angular-xhr/dev-reference.html).
+
 *Don't forget to add tests if necessary.
 
 ## Changelogs
