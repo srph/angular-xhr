@@ -9,7 +9,7 @@ Send ```$http``` requests with directives.
 
 ## Installation
 
-You may grab the build, or from bower!
+You may grab the [build](https://cdn.rawgit.com/srph/angular-xhr/dist/angular-srph-xhr.js), or from bower!
 
 ```bash
 bower install angular-srph-xhr
