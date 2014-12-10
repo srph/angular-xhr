@@ -65,6 +65,8 @@ Our provider (```srphXhrFactoryProvider```, ```provider.js```) only handles basi
 
 ### Coding Style
 
+This was copy-pasted from [```ReactJS```'s contribution style guide](https://github.com/facebook/react/blob/master/CONTRIBUTING.md)
+
 1. Use semicolons;
 2. Commas last,
 3. 2 spaces for indentation (no tabs)
