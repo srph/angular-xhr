@@ -1,11 +1,7 @@
 Developer Reference 
 =====
 
-This reference contains the list of all files with proper explanations, and how the library works.
-
 * This docs was built for potential contributors & developers of the library. If you only need the API, go to the [API Reference docs](//github.com/srph/angular-xhr/reference.html).
-
-* This library uses the namespace ```srph```, such as prefixing the directives (e.g. ```srph-xhr```), prefixing the providers (```srphXhrFactory```), and the module name ```srph.xhr```. Uses gulp to automate task (compiling, building, uglifying scripts)
 
 ## Building from source
 
@@ -39,7 +35,13 @@ You can simply use ```gulp-default```.
 
 You may use ```gulp-server``` to test by accessing ```localhost:6969```; ```gulp-build``` to build scripts, ```gulp-uglify``` to uglify scripts; and ```gulp-default``` to run all tasks and watch changes.
 
-## How it works
+## The Library
+
+### Namespace
+
+* This library uses the namespace ```srph```, such as prefixing the directives (e.g. ```srph-xhr```), prefixing the providers (```srphXhrFactory```), and the module name ```srph.xhr```. Uses gulp to automate task (compiling, building, uglifying scripts). Although this library is named as ```angular-xhr```, it will be formally adressed as ```angular-srph-xhr``` or any similarities to reserve the name for Angular's use.
+
+### How it works
 
 Our directive (```srph-xhr```, ```directive.js```) is the quintessential part of the app. It adds the proper listener (depending on the tag which it was used with, e.g.: ```<form srph-xhr..>```). It executes the controller's request (```SRPHXHRController```, ```controller.js```), taking arguments from the passed arguments in the isolated scope, which uses our factory(```srphXhrFactory```, ```provider.js```)'s request method.
 
@@ -60,3 +62,14 @@ Our provider (```srphXhrFactoryProvider```, ```provider.js```) only handles basi
 								  |	   $http      |
 								  ===================	
 ```
+
+### Coding Style
+
+1. Use semicolons;
+2. Commas last,
+3. 2 spaces for indentation (no tabs)
+4. Prefer ```'``` over ```"```
+5. ```"use strict";```
+6. 80 character line length
+8. "Attractive"
+9. Keep it simple, stupid
