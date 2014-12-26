@@ -51,4 +51,4 @@ Make sure to check the [Developer Reference doc](//srph.github.io/angular-xhr/de
 
 ## Changelogs
 
-View [file](https://github.com/srph/angular-xhr/blob/gh-pages/CHANGELOG.md).
+View [file](https://github.com/srph/angular-xhr/blob/master/CHANGELOG.MD).
