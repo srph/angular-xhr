@@ -6,7 +6,7 @@
     .provider('srphXhrFactory', providerBlock);
 
   /** Provider */
-  function providerBlock(SRPH_URL_PATTERNS, SRPH_URL_PATTERNS) {
+  function providerBlock(SRPH_URL_PATTERNS) {
     var _this = this; // Ref
     var patterns = SRPH_URL_PATTERNS;
 
