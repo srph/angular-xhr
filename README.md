@@ -9,7 +9,7 @@ Send ```$http``` requests with directives.
 
 ## Status
 
-I'd like to keep this library as simple as possible.
+I'd like to keep this library as simple as possible. As of ```0.1.6```:
 
 - [x] Send requests
 - [x] Smart URLs (Removing trailing slashes)
