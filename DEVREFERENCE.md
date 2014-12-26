@@ -3,6 +3,8 @@ Developer Reference
 
 * This docs was built for potential contributors & developers of the library. If you only need the API, go to the [API Reference docs](//github.com/srph/angular-xhr/reference.html).
 
+Reminder that I would like this library to be as simple as possible.
+
 ## Building from source
 
 To build, you are required to install npm and bower.
