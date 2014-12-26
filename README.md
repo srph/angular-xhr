@@ -7,6 +7,17 @@ Send ```$http``` requests with directives.
 - Explicitly address your XHRs.
 - Minus one dependency (```$http```) for your controller.
 
+## Status
+
+I'd like to keep this library as simple as possible.
+
+- [x] Send requests
+- [x] Smart URLs (Removing trailing slashes)
+- [x] Base URL
+- [ ] Send headers, set base headers
+- [ ] Send query parameters
+- [ ] File uploads
+
 ## Installation
 
 You may grab the [build](https://cdn.rawgit.com/srph/angular-xhr/dist/angular-srph-xhr.js), or from bower!
