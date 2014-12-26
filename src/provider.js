@@ -73,11 +73,13 @@
        * @return promise
        */
       function request(options) {
+        options = options || {};
+
         var request // Selected request
           // Shorthands
-          , type = options.type
+          , type = options.type || 'GET'
           , data = options.data
-          , url  = srphURLProcessor.getFullURL(options.url)
+          , url  = getFullURL(options.url)
           , headers = _this.headers
           , params = _this.params
           , cache = _this.cache;
@@ -101,8 +103,17 @@
      * @return {string} [full url]
      */
     function getFullURL(url) {
+      // If URL is undefined or blank, simply return the base URL
+      if ( angular.isUndefined(url) || !url.trim().length ) {
+        return _this.baseURL;
+      }
+
+      if ( patterns.leadingSlashes.test(url) ) {
+        url = url.substr(1, url.length - 1);
+      }
+
       // Append base URL is if not an aboslute url.
-      // Return omitted trailing slashes
+      //  Return omitted trailing slashes
       if ( !patterns.absoluteURL.test(url) ) { 
         url = _this.baseURL + '/' + url;
       }

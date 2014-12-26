@@ -8,6 +8,7 @@ describe('url patterns', function() {
     patterns = _SRPH_URL_PATTERNS_;
     abs = patterns.absoluteURL;
     trail = patterns.trailingSlashes;
+    lead = patterns.leadingSlashes;
   }));
 
   describe('absolute url', function() {
@@ -34,5 +35,17 @@ describe('url patterns', function() {
     it('should not match without trailing slashes', function() {
       expect('pogi').not.toMatch(trail);
     })
+  });
+
+  describe('leading slashes', function() {
+    it('should match leading slashes', function() {
+      expect('/yolo').toMatch(lead);
+    });
+
+    it('should not match non-leading slashes', function() {
+      expect('yolo').not.toMatch(lead);
+      expect('y/olo').not.toMatch(lead);
+      expect('yolo/').not.toMatch(lead);
+    });
   });
 });
