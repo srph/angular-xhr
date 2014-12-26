@@ -30,6 +30,7 @@
      */
     function setBaseURL(url) {
       _this.baseURL = removeTrailingSlashes(url);
+      return _this;
     }
 
     /**
@@ -38,6 +39,7 @@
      */
     function setHeaders(headers) {
       _this.headers = headers;
+      return _this;
     }
 
     /**
@@ -46,6 +48,7 @@
      */
     function setParams(params) {
       _this.params = params;
+      return _this;
     }
 
     /**
@@ -54,6 +57,7 @@
      */
     function setCache(bool) {
       _this.cache = ( !angular.isUndefined(bool) ) ? bool : true;
+      return _this;
     }
 
     /** Factory | $get */
