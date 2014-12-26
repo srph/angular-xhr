@@ -26,6 +26,10 @@ You may grab the [build](https://cdn.rawgit.com/srph/angular-xhr/dist/angular-sr
 bower install angular-srph-xhr
 ```
 
+## Usage
+
+Check the [API Reference, Usage](https://srph.github.io/angular-xhr/reference.html#api-reference-directive-usage)
+
 While it is also possible to use the one provided by CDNs.
 
 ```html
