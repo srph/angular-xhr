@@ -1,6 +1,9 @@
 angular-xhr
 ==============
 
+[![Build Status](https://travis-ci.org/srph/angular-xhr.svg)](https://travis-ci.org/srph/angular-xhr)
+[![Dependencies Status](https://david-dm.org/srph/angular-xhr.png)](https://david-dm.org/srph/angular-xhr.png)
+
 Send ```$http``` requests with directives.
 
 - Less lines of code for your controllers.
