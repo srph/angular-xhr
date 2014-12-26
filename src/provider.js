@@ -6,8 +6,9 @@
     .provider('srphXhrFactory', providerBlock);
 
   /** Provider */
-  function providerBlock() {
+  function providerBlock(SRPH_URL_PATTERNS, SRPH_URL_PATTERNS) {
     var _this = this; // Ref
+    var patterns = SRPH_URL_PATTERNS;
 
     _this.setBaseURL = setBaseURL;
     _this.setHeaders = setHeaders;
@@ -15,28 +16,11 @@
     _this.setParams = setParams;
     _this.$get = $get;
 
-    // ---------------------------------
-
-    /** Regex patterns */
-    var patterns = {
-      absoluteURL: /^(http|ftp|https)?:\/\//i,
-      forwardSlashes: /^\//,
-      trailingSlashes: /\/$/,
-    };
-
-    /** Defaults */
-    var defaults = {
-      baseURL: '/',
-      params: [],
-      headers: [],
-      cache: false
-    };
-
     // Set defaults
-    _this.baseURL = defaults.baseURL;
-    _this.params = defaults.params;
-    _this.headers = defaults.headers;
-    _this.cache = defaults.cache;
+    _this.baseURL = '';
+    _this.params = [];
+    _this.headers = [];
+    _this.cache = false;
 
     // -------------------------------------
 
@@ -45,7 +29,7 @@
      * @param {string} url
      */
     function setBaseURL(url) {
-      _this.baseURL = processURL(url);
+      _this.baseURL = removeTrailingSlashes(url);
     }
 
     /**
@@ -75,10 +59,7 @@
     /** Factory | $get */
     function $get($http) {
       return {
-        request: request,
-        processURL: processURL,
-        getFullURL: getFullURL,
-        isAbsoluteURL: isAbsoluteURL
+        request: request
       };
 
       /**
@@ -92,7 +73,7 @@
           // Shorthands
           , type = options.type
           , data = options.data
-          , url  = this.getFullURL(options.url)
+          , url  = srphURLProcessor.getFullURL(options.url)
           , headers = _this.headers
           , params = _this.params
           , cache = _this.cache;
@@ -111,40 +92,31 @@
     // -------------------------------------
     
     /**
-     * Appropriate appends base url
+     * Appropriately appends base url to the given url
      * @param  {string} url
      * @return {string} [full url]
      */
     function getFullURL(url) {
       // Append base URL is if not an aboslute url.
       // Return omitted trailing slashes
-      if ( !isAbsoluteURL(url) ) { 
+      if ( !patterns.absoluteURL.test(url) ) { 
         url = _this.baseURL + '/' + url;
       }
 
-      return processURL(url);
+      return removeTrailingSlashes(url);
     }
 
     /**
-     * Remove trailing aslshes
+     * Remove trailing slashes
      * @param {string} url
      * @returns {string} [processed url]
      */
-    function processURL(url) {
+    function removeTrailingSlashes(url) {
       if ( patterns.trailingSlashes.test(url) ) {
         url = url.substr(0, url.length - 1);
       }
 
       return url;
-    }
-
-    /**
-     * Check if the given is an absolute url
-     * @param {string} url
-     * @returns {boolean}
-     */
-    function isAbsoluteURL(url) {
-      return patterns.absoluteURL.test(url);
     }
   }
 }(angular);

@@ -20,7 +20,7 @@
       link: linkFn,
       bindToController: true,
       controllerAs: 'xhrCtrl',
-      controller: 'SRPHXHRController'
+      controller: controllerFn
     }
 
     /**
@@ -56,6 +56,32 @@
       function xhr(e) {
         // e.preventDefault();
         controller.request( controller.data );
+      }
+    }
+
+    function controllerFn($scope, srphXhrFactory) {
+      var vm = this;
+      var factory = srphXhrFactory; // Shorthand
+
+      vm.request = request;
+
+      /**
+      * Sends a request to the server
+      * @see srphXhrFactroy
+      * @see srphXhrFactory.request
+      * @param  {Object} data [Data to be sent along with the request]
+      * @return {promise}
+      */
+      function request(data) {
+        var options = {
+          url: vm.url,
+          type: vm.type,
+          data: data
+        };
+
+        factory.request(options)
+          .then(vm.successCb || angular.noop)
+          .catch(vm.errorCb || angular.noop);
       }
     }
   }

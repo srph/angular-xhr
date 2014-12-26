@@ -1,13 +1,13 @@
 {
   "name": "angular-xhr",
-  "version": "0.1",
+  "version": "v0.1.6",
   "description": "",
   "main": "dist/angular-srph-xhr.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
   },
   "author": "",
   "license": "ISC",
@@ -19,7 +19,10 @@
     "gulp-plumber": "^0.6.6",
     "gulp-rename": "^1.2.0",
     "gulp-uglify": "^1.0.1",
-    "karma": "^0.12.25",
+    "jasmine-core": "^2.1.3",
+    "karma": "^0.12.28",
+    "karma-jasmine": "^0.3.3",
+    "karma-phantomjs-launcher": "^0.1.4",
     "ng-annotate": "^0.13.0"
   }
 }
