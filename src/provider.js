@@ -62,9 +62,7 @@
 
     /** Factory | $get */
     function $get($http) {
-      return {
-        request: request
-      };
+      return { request: request };
 
       /**
        * Sends a request to the server
@@ -108,6 +106,8 @@
         return _this.baseURL;
       }
 
+      // Remove leading slashes since the condition below (absolute url)
+      // prepends it in anyway.
       if ( patterns.leadingSlashes.test(url) ) {
         url = url.substr(1, url.length - 1);
       }

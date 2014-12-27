@@ -3,7 +3,7 @@
     .module('srph.xhr')
     .directive('srphXhr', directive);
 
-  function directive() {
+  function directive(srphXhrFactory) {
     var scope = {
       url: '@srphXhr', // URL of the request
       type: '@requestType', // Type of the request
@@ -16,11 +16,7 @@
     return {
       scope: scope,
       restrict: 'EA',
-      // replace: true, 
-      link: linkFn,
-      bindToController: true,
-      controllerAs: 'xhrCtrl',
-      controller: controllerFn
+      link: linkFn
     }
 
     /**
@@ -32,10 +28,16 @@
      * @see SRPHXHRController.request
      */
     function linkFn(scope, element, attributes, controller) {
+      // Shorthand
+      var factory = srphXhrFactory;
+
       // Gets the tag name of the element
       // which the directive is applied to:
       // extracts "FORM" from <form srph-xhr="...">
       var tag = element.prop("tagName");
+
+      // Add fn to scope
+      scope.request = request;
 
       // Properly an event listener depending
       // on the tag
@@ -55,15 +57,8 @@
        */
       function xhr(e) {
         // e.preventDefault();
-        controller.request( controller.data );
+        scope.request( scope.data );
       }
-    }
-
-    function controllerFn($scope, srphXhrFactory) {
-      var vm = this;
-      var factory = srphXhrFactory; // Shorthand
-
-      vm.request = request;
 
       /**
       * Sends a request to the server
@@ -74,14 +69,14 @@
       */
       function request(data) {
         var options = {
-          url: vm.url,
-          type: vm.type,
+          url: scope.url,
+          type: scope.type,
           data: data
         };
 
         factory.request(options)
-          .then(vm.successCb || angular.noop)
-          .catch(vm.errorCb || angular.noop);
+          .then(scope.successCb || angular.noop)
+          .catch(scope.errorCb || angular.noop);
       }
     }
   }
