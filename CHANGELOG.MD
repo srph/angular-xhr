@@ -1,10 +1,19 @@
+# Changelogs
+=====
+
+Tagged ```BC``` are *Breaking Changes*.
+
+## v0.2.1 - December 28, 2014
+
+- Removed setCache typecasting of the provided argument
+
 ## v0.2.0 - December 28, 2014
 
 ### Provider
 
-- Renamed setHeaders to ```setDefaultHeaders```
-- Fixed; Headers are now objects (was an array on the last version, ```v0.1.6```).
-- setDefaultHeaders throws an ```exception``` if provided argument was not an object
+- ```BC``` Renamed ```setHeaders``` to ```setDefaultHeaders```
+- ```BC``` Fixed; Headers are now objects (was an array on the last version, ```v0.1.6```).
+- ```BC``` setDefaultHeaders throws an ```exception``` if provided argument was not an object
 - ```setCache``` now automatically types casts provided argument
 - Passing no arguments to ```setBaseURL``` automatically sets ```baseURL``` to ```''```
 - Allowing method chaining on setters
@@ -13,6 +22,11 @@
 ### Factory
 
 - Fixed leading slashes (```/{link}```) causing request to be sent to wrong URLs (```{baseurl}//{link}).
+
+### Directive
+
+- Removed controller
+- Moved everything to scope
 
 ### URL Pattern
 
