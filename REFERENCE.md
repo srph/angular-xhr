@@ -49,11 +49,12 @@ You may use use both the attribute (```<div this-directive>```) and element form
 
 Option | Type | Default | Description
 ------ | ---- | ------- | -----------
-srph-xhr (request-url) | string | '/' | URL of the request. Simply pass ```www```, ```http(s)``` for absolute urls
+srph-xhr (request-url) | string | '/' | URL of the request. Internally concatenates base URL; simply pass ```www```, ```http(s)``` for absolute urls
 request-type | string | 'get' | Type of request
 request-data | collection | {} | Data to be sent
 request-success | function | noop | success callback
 request-error | function | noop | error callback
+request-cache | expression (boolean) | (set cache to the ```provider```) | Cache the request
 
 ## Provider
 
@@ -80,7 +81,6 @@ function config(srphXhrFactoryProvider, ..other dependencies) {
 
 Option | Type | Default | Description
 ------ | ---- | ------- | -----------
-setBaseURL | string | '/' | Base URLs of the all requests.
-setHeaders | array | [] | Default headers included in all requests.
+setBaseURL | string | '/' | Base URLs of the all requests. 
+setDefaultHeaders | object | {} | Default headers included in all requests.
 setCache | bool | false | Enable/disable cache by default in all requests.
-setParams | array | []] | Default params included in all requests.

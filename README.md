@@ -17,7 +17,7 @@ I'd like to keep this library as simple as possible. As of ```0.1.6```:
 - [x] Send requests
 - [x] Smart URLs (Removing trailing slashes)
 - [x] Base URL
-- [ ] Send headers, set base headers
+- [x] Send headers, set base headers
 - [ ] Send query parameters
 - [ ] File uploads
 
