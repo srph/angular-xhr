@@ -23,6 +23,8 @@ I'd like to keep this library as simple as possible. As of ```0.2.1```:
 
 It is working as it should, but it is **not** yet recommended or suitable for production.
 
+This is an on-going project, and I am in need contributors (especially feat requests).
+
 ## Installation
 
 You may grab the [build](https://cdn.rawgit.com/srph/angular-xhr/dist/angular-srph-xhr.js), or from bower!
@@ -55,7 +57,7 @@ See the introductory docs [here](https://srph.github.io/angular-xhr), [API refer
 
 ## Contribution
 
-I do not *usually* touch with other features in the ```XHR``` or ```$http``` request (actually, I've never touched them), so please feel free to issue a request.
+I do not *usually* use the other features in the ```XHR``` or ```$http``` API (actually, I've never touched them), so please feel free to issue a feature.
 
 For features or fixes, I would suggest to submit an issue first before submitting a pull request. This avoids closed pull-requests; useless work.
 
