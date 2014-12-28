@@ -15,34 +15,36 @@ describe('directive (form / button)', function() {
     $httpBackend.when('GET', 'pogi.com').respond(200);
   }));
 
-  it('should call an XHR on submit if it is a form', function() {
-    $httpBackend.expectGET('pogi.com');
-    element = compile('<form id="form" srph-xhr="pogi.com"></form>');
+  describe('proper binding of event listener', function() {
+    it('should call an XHR on submit if it is a form', function() {
+      $httpBackend.expectGET('pogi.com');
+      element = compile('<form id="form" srph-xhr="pogi.com"></form>');
 
-    spyEvt = spyOnEvent(element, 'submit');
-    element.triggerHandler('submit');
-    expect('submit').toHaveBeenTriggeredOn(element);
-    expect(spyEvt).toHaveBeenTriggered();
-    $httpBackend.flush();
-  });
+      spyEvt = spyOnEvent(element, 'submit');
+      element.triggerHandler('submit');
+      expect('submit').toHaveBeenTriggeredOn(element);
+      expect(spyEvt).toHaveBeenTriggered();
+      $httpBackend.flush();
+    });
 
-  it('should not call an XHR on button click if it is a form', function() {
-    element = compile('<form id="form" srph-xhr="pogi.com"><button type="button">Submit</button></form>');
-    var btn = element.find('button');
-    spyEvt = spyOnEvent(btn, 'click');
-    btn.triggerHandler('click');
-    expect('click').toHaveBeenTriggeredOn(btn);
-    expect(spyEvt).toHaveBeenTriggered();
-  });
+    it('should not call an XHR on button click if it is a form', function() {
+      element = compile('<form id="form" srph-xhr="pogi.com"><button type="submit">Submit</button></form>');
+      var btn = element.find('button[type=submit]');
+      spyEvt = spyOnEvent(btn, 'click');
+      btn.triggerHandler('click');
+      expect('click').toHaveBeenTriggeredOn(btn);
+      expect(spyEvt).toHaveBeenTriggered();
+    });
 
-  it('should call an XHR on click if it is a button', function() {
-    $httpBackend.expectGET('pogi.com');
-    element = compile('<button type="button" srph-xhr="pogi.com">Submit</button>');
-    spyEvt = spyOnEvent(element, 'click');
-    element.triggerHandler('click');
-    expect('click').toHaveBeenTriggeredOn(element);
-    expect(spyEvt).toHaveBeenTriggered();
-    $httpBackend.flush();
+    it('should call an XHR on click if it is a button', function() {
+      $httpBackend.expectGET('pogi.com');
+      element = compile('<button type="button" srph-xhr="pogi.com">Submit</button>');
+      spyEvt = spyOnEvent(element, 'click');
+      element.triggerHandler('click');
+      expect('click').toHaveBeenTriggeredOn(element);
+      expect(spyEvt).toHaveBeenTriggered();
+      $httpBackend.flush();
+    });
   });
 
   afterEach(function() {

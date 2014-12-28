@@ -13,7 +13,7 @@ describe('service and provider', function() {
     expect(provider.setBaseURL()).toEqual(provider);
     expect(provider.setCache()).toEqual(provider);
     expect(provider.setParams()).toEqual(provider);
-    expect(provider.setHeaders()).toEqual(provider);
+    expect(provider.setDefaultHeaders({ "key": "value" })).toEqual(provider);
   });
 
   describe('setting base url', function() {
@@ -23,7 +23,33 @@ describe('service and provider', function() {
     });
   });
 
-  describe('factory recipe ($get) request', function() {
+  describe('setting default headers', function() {
+    it('should throw an error if provided headers is not an object', function() {
+      expect( function() { provider.setDefaultHeaders('hello'); }).toThrow(new Error([
+          'Headers must be an object with the ',
+          'following format { "key": value }'
+        ].join('')));
+    });
+  });
+
+  describe('setting cache', function() {
+    it('should be true if no argument is provided', function() {
+      provider.setCache();
+      expect(provider.cache).toBe(true);
+    });
+
+    it('should typecast provided argument to boolean', function() {
+      provider.setCache('true');
+      expect(provider.cache).toBe(true);
+    });
+
+    it('should work as it is, set cache to provided argument', function() {
+      provider.setCache(false);
+      expect(provider.cache).toBe(false)
+    });
+  });
+
+  describe('request with factory recipe ($get)', function() {
     var $http;
     var $httpBackend;
     var $get;

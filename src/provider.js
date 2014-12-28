@@ -11,7 +11,7 @@
     var patterns = SRPH_URL_PATTERNS;
 
     _this.setBaseURL = setBaseURL;
-    _this.setHeaders = setHeaders;
+    _this.setDefaultHeaders = setDefaultHeaders;
     _this.setCache = setCache;
     _this.setParams = setParams;
     _this.$get = $get;
@@ -19,7 +19,7 @@
     // Set defaults
     _this.baseURL = '';
     _this.params = [];
-    _this.headers = [];
+    _this.defaultHeaders = {};
     _this.cache = false;
 
     // -------------------------------------
@@ -37,8 +37,16 @@
      * Set default headers
      * @param {Array} headers
      */
-    function setHeaders(headers) {
-      _this.headers = headers;
+    function setDefaultHeaders(headers) {
+      if ( !angular.isObject(headers) ) {
+        throw new Error([
+          'Headers must be an object with the ',
+          'following format { "key": value }'
+        ].join(''));
+      }
+
+      _this.defaultHeaders = headers;
+
       return _this;
     }
 
@@ -56,7 +64,7 @@
      * @param {boolean} bool
      */
     function setCache(bool) {
-      _this.cache = ( !angular.isUndefined(bool) ) ? bool : true;
+      _this.cache = ( !angular.isUndefined(bool) ) ? !!bool : true;
       return _this;
     }
 
@@ -78,9 +86,9 @@
           , type = options.type || 'GET'
           , data = options.data
           , url  = getFullURL(options.url)
-          , headers = _this.headers
+          , headers = angular.extend(options.headers || {}, _this.defaultHeaders)
           , params = _this.params
-          , cache = _this.cache;
+          , cache = options.cache || _this.cache;
 
         return $http({
           url: url,
