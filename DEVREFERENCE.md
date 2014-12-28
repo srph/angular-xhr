@@ -59,3 +59,5 @@ This was copy-pasted from [```ReactJS```'s contribution style guide](https://git
 6. 80 character line length
 8. "Attractive"
 9. Keep it simple, stupid
+
+Do not forget to add tests!

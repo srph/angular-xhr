@@ -55,6 +55,8 @@ See the introductory docs [here](https://srph.github.io/angular-xhr), [API refer
 
 ## Contribution
 
+I do not *usually* touch with other features in the ```XHR``` or ```$http``` request (actually, I've never touched them), so please feel free to issue a request.
+
 For features or fixes, I would suggest to submit an issue first before submitting a pull request. This avoids closed pull-requests; useless work.
 
 ```
