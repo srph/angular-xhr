@@ -1,6 +1,6 @@
 {
   "name": "angular-xhr",
-  "version": "v0.1.6",
+  "version": "v0.2",
   "description": "",
   "main": "dist/angular-srph-xhr.js",
   "directories": {

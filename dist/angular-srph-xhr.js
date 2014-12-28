@@ -10,45 +10,14 @@
 +function(angular, undefined) {
   angular
     .module('srph.xhr')
-    .controller('SRPHXHRController', XHRController);
-
-  function XHRController($scope, srphXhrFactory) {
-    var vm = this
-      , factory = srphXhrFactory; // Shorthand
-
-    vm.request = request;
-
-    /**
-     * Sends a request to the server
-     * @see srphXhrFactroy
-     * @see srphXhrFactory.request
-     * @param  {Object} data [Data to be sent along with the request]
-     * @return {promise}
-     */
-    function request(data) {
-      var options = {
-        url: vm.url,
-        type: vm.type,
-        data: data
-      };
-
-      factory.request(options)
-        .then(vm.successCb || angular.noop)
-        .catch(vm.errorCb || angular.noop);
-    }
-  }
-  XHRController.$inject = ["$scope", "srphXhrFactory"];
-}(angular);
-+function(angular, undefined) {
-  angular
-    .module('srph.xhr')
     .directive('srphXhr', directive);
 
-  function directive() {
+  function directive(srphXhrFactory) {
     var scope = {
       url: '@srphXhr', // URL of the request
       type: '@requestType', // Type of the request
       data: '=requestData', // Data to be sent with the request
+      cache: '&requestCache', // If to be cached
       successCb: '=requestSuccess', // Callback to be executed if request was successful
       errorCb: '=requestError' // Callback to be executed if request was settled with an error
     };
@@ -57,11 +26,7 @@
     return {
       scope: scope,
       restrict: 'EA',
-      // replace: true, 
-      link: linkFn,
-      bindToController: true,
-      controllerAs: 'xhrCtrl',
-      controller: 'SRPHXHRController'
+      link: linkFn
     }
 
     /**
@@ -73,10 +38,16 @@
      * @see SRPHXHRController.request
      */
     function linkFn(scope, element, attributes, controller) {
+      // Shorthand
+      var factory = srphXhrFactory;
+
       // Gets the tag name of the element
       // which the directive is applied to:
       // extracts "FORM" from <form srph-xhr="...">
       var tag = element.prop("tagName");
+
+      // Add fn to scope
+      scope.request = request;
 
       // Properly an event listener depending
       // on the tag
@@ -96,10 +67,31 @@
        */
       function xhr(e) {
         // e.preventDefault();
-        controller.request( controller.data );
+        scope.request( scope.data );
+      }
+
+      /**
+      * Sends a request to the server
+      * @see srphXhrFactroy
+      * @see srphXhrFactory.request
+      * @param  {Object} data [Data to be sent along with the request]
+      * @return {promise}
+      */
+      function request(data) {
+        var options = {
+          url: scope.url,
+          type: scope.type,
+          cache: scope.cache,
+          data: data
+        };
+
+        factory.request(options)
+          .then(scope.successCb || angular.noop)
+          .catch(scope.errorCb || angular.noop);
       }
     }
   }
+  directive.$inject = ["srphXhrFactory"];
 }(angular);
 +function(angular, undefined) {
   'use strict';
@@ -109,37 +101,21 @@
     .provider('srphXhrFactory', providerBlock);
 
   /** Provider */
-  function providerBlock() {
+  function providerBlock(SRPH_URL_PATTERNS) {
     var _this = this; // Ref
+    var patterns = SRPH_URL_PATTERNS;
 
     _this.setBaseURL = setBaseURL;
-    _this.setHeaders = setHeaders;
+    _this.setDefaultHeaders = setDefaultHeaders;
     _this.setCache = setCache;
     _this.setParams = setParams;
     _this.$get = $get;
 
-    // ---------------------------------
-
-    /** Regex patterns */
-    var patterns = {
-      absoluteURL: /^(http|ftp|https)?:\/\//i,
-      forwardSlashes: /^\//,
-      trailingSlashes: /\/$/,
-    };
-
-    /** Defaults */
-    var defaults = {
-      baseURL: '/',
-      params: [],
-      headers: [],
-      cache: false
-    };
-
     // Set defaults
-    _this.baseURL = defaults.baseURL;
-    _this.params = defaults.params;
-    _this.headers = defaults.headers;
-    _this.cache = defaults.cache;
+    _this.baseURL = '';
+    _this.params = [];
+    _this.defaultHeaders = {};
+    _this.cache = false;
 
     // -------------------------------------
 
@@ -148,15 +124,30 @@
      * @param {string} url
      */
     function setBaseURL(url) {
-      _this.baseURL = processURL(url);
+      if ( angular.isUndefined(url) || !url.trim().length ) {
+        _this.baseURL = '';
+      } else {
+        _this.baseURL = removeTrailingSlashes(url);
+      }
+
+      return _this;
     }
 
     /**
      * Set default headers
      * @param {Array} headers
      */
-    function setHeaders(headers) {
-      _this.headers = headers;
+    function setDefaultHeaders(headers) {
+      if ( !angular.isObject(headers) ) {
+        throw new Error([
+          'Headers must be an object with the ',
+          'following format { "key": value }'
+        ].join(''));
+      }
+
+      _this.defaultHeaders = headers;
+
+      return _this;
     }
 
     /**
@@ -165,6 +156,7 @@
      */
     function setParams(params) {
       _this.params = params;
+      return _this;
     }
 
     /**
@@ -172,17 +164,15 @@
      * @param {boolean} bool
      */
     function setCache(bool) {
-      _this.cache = ( !angular.isUndefined(bool) ) ? bool : true;
+      _this.cache = ( !angular.isUndefined(bool) )
+        ? bool
+        : true;
+      return _this;
     }
 
     /** Factory | $get */
     function $get($http) {
-      return {
-        request: request,
-        processURL: processURL,
-        getFullURL: getFullURL,
-        isAbsoluteURL: isAbsoluteURL
-      };
+      return { request: request };
 
       /**
        * Sends a request to the server
@@ -191,14 +181,16 @@
        * @return promise
        */
       function request(options) {
+        options = options || {};
+
         var request // Selected request
           // Shorthands
-          , type = options.type
+          , type = options.type || 'GET'
           , data = options.data
-          , url  = this.getFullURL(options.url)
-          , headers = _this.headers
+          , url  = getFullURL(options.url)
+          , headers = angular.extend(options.headers || {}, _this.defaultHeaders)
           , params = _this.params
-          , cache = _this.cache;
+          , cache = options.cache || _this.cache;
 
         return $http({
           url: url,
@@ -214,40 +206,55 @@
     // -------------------------------------
     
     /**
-     * Appropriate appends base url
+     * Appropriately appends base url to the given url
      * @param  {string} url
      * @return {string} [full url]
      */
     function getFullURL(url) {
+      // If URL is undefined or blank, simply return the base URL
+      if ( angular.isUndefined(url) || !url.trim().length ) {
+        return _this.baseURL;
+      }
+
+      // Remove leading slashes since the condition below (absolute url)
+      // prepends it in anyway.
+      if ( patterns.leadingSlashes.test(url) ) {
+        url = url.substr(1, url.length - 1);
+      }
+
       // Append base URL is if not an aboslute url.
-      // Return omitted trailing slashes
-      if ( !isAbsoluteURL(url) ) { 
+      //  Return omitted trailing slashes
+      if ( !patterns.absoluteURL.test(url) ) { 
         url = _this.baseURL + '/' + url;
       }
 
-      return processURL(url);
+      return removeTrailingSlashes(url);
     }
 
     /**
-     * Remove trailing aslshes
+     * Remove trailing slashes
      * @param {string} url
      * @returns {string} [processed url]
      */
-    function processURL(url) {
+    function removeTrailingSlashes(url) {
       if ( patterns.trailingSlashes.test(url) ) {
         url = url.substr(0, url.length - 1);
       }
 
       return url;
     }
-
-    /**
-     * Check if the given is an absolute url
-     * @param {string} url
-     * @returns {boolean}
-     */
-    function isAbsoluteURL(url) {
-      return patterns.absoluteURL.test(url);
-    }
   }
+  providerBlock.$inject = ["SRPH_URL_PATTERNS"];
+}(angular);
++function(angular, undefined) {
+  'use strict';
+  var patterns = {
+    absoluteURL: /(((^(http|https)\:)?\/\/)|([A-Za-z0-9]{2,}\.[A-Za-z]+))/i,
+    leadingSlashes: /^\//,
+    trailingSlashes: /\/$/,
+  };
+
+  angular
+    .module('srph.xhr')
+    .constant('SRPH_URL_PATTERNS', patterns);
 }(angular);

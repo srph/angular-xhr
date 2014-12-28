@@ -29,7 +29,12 @@
      * @param {string} url
      */
     function setBaseURL(url) {
-      _this.baseURL = removeTrailingSlashes(url);
+      if ( angular.isUndefined(url) || !url.trim().length ) {
+        _this.baseURL = '';
+      } else {
+        _this.baseURL = removeTrailingSlashes(url);
+      }
+
       return _this;
     }
 
@@ -64,7 +69,9 @@
      * @param {boolean} bool
      */
     function setCache(bool) {
-      _this.cache = ( !angular.isUndefined(bool) ) ? !!bool : true;
+      _this.cache = ( !angular.isUndefined(bool) )
+        ? bool
+        : true;
       return _this;
     }
 

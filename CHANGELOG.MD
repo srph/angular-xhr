@@ -1,3 +1,34 @@
+## v0.2.0 - December 28, 2014
+
+### Provider
+
+- Renamed setHeaders to ```setDefaultHeaders```
+- Fixed; Headers are now objects (was an array on the last version, ```v0.1.6```).
+- setDefaultHeaders throws an ```exception``` if provided argument was not an object
+- ```setCache``` now automatically types casts provided argument
+- Passing no arguments to ```setBaseURL``` automatically sets ```baseURL``` to ```''```
+- Allowing method chaining on setters
+- Moved URL patterns to its own angular constant component
+
+### Factory
+
+- Fixed leading slashes (```/{link}```) causing request to be sent to wrong URLs (```{baseurl}//{link}).
+
+### URL Pattern
+
+- Moved patterns
+- Updated absolute URLs to detect not only ```http://```, and ```https://```, but also ```//``` (no scheme), and ```www.{link}```.
+
+```js
+srphXhrFactoryProvider
+	.setBaseURL()
+	.setDefaultHeaders()
+```
+
+### Miscellaneous
+
+- Partially added in tests to ensure that everything is working in properly
+
 ## v0.1.6 - November 24, 2014
 
 ### Directive
