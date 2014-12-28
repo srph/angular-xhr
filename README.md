@@ -12,7 +12,7 @@ Send ```$http``` requests with directives.
 
 ## Status
 
-I'd like to keep this library as simple as possible. As of ```0.1.6```:
+I'd like to keep this library as simple as possible. As of ```0.2```:
 
 - [x] Send requests
 - [x] Smart URLs (Removing trailing slashes)
@@ -20,6 +20,8 @@ I'd like to keep this library as simple as possible. As of ```0.1.6```:
 - [x] Send headers, set base headers
 - [ ] Send query parameters
 - [ ] File uploads
+
+It is working as it should, but it is **not** yet recommended or suitable for production.
 
 ## Installation
 
