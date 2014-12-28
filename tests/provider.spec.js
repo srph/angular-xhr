@@ -38,14 +38,11 @@ describe('service and provider', function() {
       expect(provider.cache).toBe(true);
     });
 
-    it('should typecast provided argument to boolean', function() {
-      provider.setCache('true');
-      expect(provider.cache).toBe(true);
-    });
-
     it('should work as it is, set cache to provided argument', function() {
       provider.setCache(false);
       expect(provider.cache).toBe(false)
+      provider.setCache(true);
+      expect(provider.cache).toBe(true)
     });
   });
 
