@@ -31,7 +31,9 @@ Afterwards, install our bower dependencies.
 $ bower install
 ```
 
-### Automation | Gulp
+### Automation / Building scripts
+
+This library uses gulp to automate task (compiling, building, uglifying scripts).
 
 You can simply use ```gulp-default```.
 
@@ -39,31 +41,11 @@ You may use ```gulp-server``` to test by accessing ```localhost:6969```; ```gulp
 
 ## The Library
 
+Although this library is named as ```angular-xhr```, it will be formally adressed as ```angular-srph-xhr``` or any similarities to reserve the name for Angular's use.
+
 ### Namespace
 
-* This library uses the namespace ```srph```, such as prefixing the directives (e.g. ```srph-xhr```), prefixing the providers (```srphXhrFactory```), and the module name ```srph.xhr```. Uses gulp to automate task (compiling, building, uglifying scripts). Although this library is named as ```angular-xhr```, it will be formally adressed as ```angular-srph-xhr``` or any similarities to reserve the name for Angular's use.
-
-### How it works
-
-Our directive (```srph-xhr```, ```directive.js```) is the quintessential part of the app. It adds the proper listener (depending on the tag which it was used with, e.g.: ```<form srph-xhr..>```). It executes the controller's request (```SRPHXHRController```, ```controller.js```), taking arguments from the passed arguments in the isolated scope, which uses our factory(```srphXhrFactory```, ```provider.js```)'s request method.
-
-Our provider (```srphXhrFactoryProvider```, ```provider.js```) only handles basic, default and custom settings; also contains methods essential for processing URLs and requests.
-
-```
-===========						 ====================
-|directive|  			-> 		 |controller.request|  ->  perform callback
-===========						 ====================
-									 |		 ^
-									 v 		 |
-============================== <- ===================
-|provider (full url, headers)| 	  |factory (request)| 
-============================== -> ===================
-								  	 | 		 ^
-								  	 v 		 |
-								  ===================
-								  |	   $http      |
-								  ===================	
-```
+This library uses the namespace ```srph```, such as prefixing the directives (e.g. ```srph-xhr```), prefixing the providers (```srphXhrFactory```), and the module name ```srph.xhr```.
 
 ### Coding Style
 
