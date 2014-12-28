@@ -8,12 +8,17 @@
   "main": "dist/angular-srph-xhr.js",
   "license": "MIT",
   "ignore": [
-    "**/.*",
     "node_modules",
     "bower_components",
     "test",
     "tests",
-    "gulp_builds"
+    "gulp_builds",
+    "gulpfile.js",
+    "src",
+    "DEVREFERENCE.md",
+    ".travis.yml",
+    "REFERENCE.md",
+    "*.html"
   ],
   "dependencies": {
     "angular": "~1.3.3"
