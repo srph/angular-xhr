@@ -71,9 +71,13 @@ Specify the library (```angular-srph-xhr.js``` or ```angular-srph-xhr.min.js```)
 
 Check the [API Reference, Usage](https://srph.github.io/angular-xhr/reference.html#api-reference-directive-usage)
 
-## Status
+## Important Notes
 
-I'd like to keep this library as simple as possible. As of ```0.2.1```:
+I'd like to keep this library as simple as possible.
+
+### Status
+
+As of ```0.2.1```:
 
 - [x] Send requests
 - [x] Smart URLs (Removing trailing slashes)
@@ -83,17 +87,15 @@ I'd like to keep this library as simple as possible. As of ```0.2.1```:
 - [ ] Send query parameters
 - [ ] File uploads
 
-It is working as it should, but it is **not** yet recommended or suitable for production.
+This is an alpha release, and it is **not** yet recommended or suitable for production.
 
-This is an on-going project, and I am in need contributors (especially feat requests).
+This is an on-going project, and I am in need contributors (especially feat requests). I do not *usually* use the other features in the ```XHR``` or ```$http``` API (actually, I've never touched them), so please feel free to issue a feature.
 
 ## Docs / Examples
 
 See the introductory docs [here](https://srph.github.io/angular-xhr), [API reference / docs](https://srph.github.io/angular-xhr/reference.html), and the demos [here](https://srph.github.io/angular-xhr/examples).
 
 ## Contribution
-
-I do not *usually* use the other features in the ```XHR``` or ```$http``` API (actually, I've never touched them), so please feel free to issue a feature.
 
 For features or fixes, I would suggest to submit an issue first before submitting a pull request. This avoids closed pull-requests; useless work.
 
