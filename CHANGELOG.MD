@@ -5,7 +5,7 @@ Tagged ```BC``` are *Breaking Changes*.
 
 ## v0.2.1 - December 28, 2014
 
-- Removed ```setCache```'s typecasting of the provided argument
+- Removed ```setCache```'s of the provided argument. ```setCache``` no longer evaluates given expression by itself.
 
 ## v0.2.0 - December 28, 2014
 
