@@ -1,4 +1,5 @@
 +function(angular, undefined) {
+  'use strict';
   angular
     .module('srph.xhr')
     .directive('srphXhr', directive);
@@ -9,10 +10,10 @@
       type: '@requestType', // Type of the request
       data: '=requestData', // Data to be sent with the request
       cache: '&requestCache', // If to be cached
-      successCb: '=requestSuccess', // Callback to be executed if request was successful
-      errorCb: '=requestError', // Callback to be executed if request was settled with an error
+      successCb: '&requestSuccess', // Callback to be executed if request was successful
+      errorCb: '&requestError', // Callback to be executed if request was settled with an error
       preAction: '&requestPreAction', // Callback to be executed before the request
-      postAction: '=requestPostAction' // Callback to be automatically executed after the request (final block)
+      postAction: '&requestPostAction' // Callback to be automatically executed after the request (final block)
     };
 
     // Directive properties
@@ -30,7 +31,7 @@
      * @see SRPHXHRController
      * @see SRPHXHRController.request
      */
-    function linkFn(scope, element, attributes, controller) {
+    function linkFn(scope, element, attributes) {
       // Shorthand
       var factory = srphXhrFactory;
 
@@ -58,8 +59,8 @@
        * Call controller "request"
        * @param  {event} e
        */
-      function xhr(e) {
-        // e.preventDefault();
+      function xhr(evt) {
+        // evt.preventDefault();
         scope.request( scope.data );
       }
 
@@ -80,10 +81,41 @@
           data: data
         };
 
-        factory.request(options)
-          .then(scope.successCb || angular.noop)
-          .catch(scope.errorCb || angular.noop)
-          .finally(scope.postAction || angular.noop);
+        return factory.request(options)
+          .then(thenFn)
+          .catch(catchFn)
+          .finally(finallyFn);
+
+        /**
+         * Promise handlers
+         */
+
+        function thenFn(response, status, headers, config) {
+          scope.successCb({
+            response: response,
+            status: status,
+            headers: headers,
+            config: config
+          });
+        }
+
+        function catchFn(response, status, headers, config) {
+          scope.errorCb({
+            response: response,
+            status: status,
+            headers: headers,
+            config: config
+          });
+        }
+
+        function finallyFn(response, status, headers, config) {
+          scope.postAction({
+            response: response,
+            status: status,
+            headers: headers,
+            config: config
+          });
+        }
       }
     }
   }
