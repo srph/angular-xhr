@@ -10,7 +10,7 @@
       data: '=requestData', // Data to be sent with the request
       cache: '&requestCache', // If to be cached
       successCb: '=requestSuccess', // Callback to be executed if request was successful
-      errorCb: '=requestError' // Callback to be executed if request was settled with an error
+      errorCb: '=requestError', // Callback to be executed if request was settled with an error
       preAction: '&requestPreAction', // Callback to be executed before the request
       postAction: '=requestPostAction' // Callback to be automatically executed after the request (final block)
     };
