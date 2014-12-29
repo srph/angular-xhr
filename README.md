@@ -12,15 +12,17 @@ Send ```$http``` requests with directives.
 
 ### Why should I use this library?
 
-There are circumstances where a certain part of your app only has to send an ```$http``` request to an API, and we wouldn't want repetitive ```$http``` in our scripts.
+There are circumstances where a certain part of your app only has to send an ```$http``` request to an API, and repetitive ```$http``` in our controller can be tedious and unacceptable.
 
-You can send a ```POST``` to ```api/v1/users/``` with this one line of code:
+You can send a ```POST``` to ```api/v1/users/``` with just this code:
 
 ```html
-<button type="button" srph-xhr="api/v1/users" request-type="POST" request-data="formData">Create User</button>
+<button type="button" srph-xhr="api/v1/users" request-type="POST" request-data="formData">
+	Create User
+</button>
 ```
 
-Instead of having something the code below which is, honestly, quite tedious in some instances:
+Instead of having something the code below which is, honestly, quite tedious in some situations:
 
 ```
 // user-create.controller.js
