@@ -17,7 +17,10 @@ There are circumstances where a certain part of your app only has to send an ```
 You can send a ```POST``` to ```api/v1/users/``` with just this code:
 
 ```html
-<button type="button" srph-xhr="api/v1/users" request-type="POST" request-data="formData">
+<button
+  srph-xhr="api/v1/users"
+  request-type="POST"
+  request-data="formData">
 	Create User
 </button>
 ```
