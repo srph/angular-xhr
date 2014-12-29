@@ -111,7 +111,7 @@ View [file](https://github.com/srph/angular-xhr/blob/master/CHANGELOG.MD).
 
 ## Links / References
 
-- [https://github.com/srph/angular-xhr](Github Repository)
+- [Github Repository](https://github.com/srph/angular-xhr)
 - [Introduction Docs](http://srph.github.io/angular-xhr/)
 - [API Docs](http://srph.github.io/angular-xhr/reference.html)
 - [Developer Docs](http://srph.github.io/angular-xhr/dev-reference.html)
