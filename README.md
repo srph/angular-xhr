@@ -41,9 +41,11 @@ app.controller('UserCreateController', function($scope, $html) {
 <button type="button" ng-click="request()">Create User</button>
 ```
 
-[Let's Get Started!](#installation)
+## Let's Get Started
 
-## Installation
+Getting started is very easy.
+
+### Installation
 
 You may grab the [build](https://cdn.rawgit.com/srph/angular-xhr/dist/angular-srph-xhr.js), or from bower!
 
@@ -65,7 +67,7 @@ Specify the library (```angular-srph-xhr.js``` or ```angular-srph-xhr.min.js```)
 <script src="https://cdn.rawgit.com/srph/angular-xhr/dist/angular-srph-xhr.min.js"></script>
 ```
 
-## Usage
+### Usage
 
 Check the [API Reference, Usage](https://srph.github.io/angular-xhr/reference.html#api-reference-directive-usage)
 
