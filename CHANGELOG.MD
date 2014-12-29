@@ -5,7 +5,7 @@ Tagged ```BC``` are *Breaking Changes*.
 
 ## v0.2.1 - December 28, 2014
 
-- Removed setCache's typecasting of the provided argument
+- Removed ```setCache```'s typecasting of the provided argument
 
 ## v0.2.0 - December 28, 2014
 
@@ -28,7 +28,7 @@ srphXhrFactoryProvider
 
 ### Factory
 
-- Fixed leading slashes (```/{link}```) causing request to have extra ```/``` between the location and pathname (```{baseurl}//{pathname}).
+- Fixed leading slashes (```/{link}```) causing request to have extra ```/``` between the location and pathname (```{baseurl}//{pathname}```).
 
 ### Directive
 
@@ -38,7 +38,7 @@ srphXhrFactoryProvider
 ### URL Pattern
 
 - Moved patterns
-- Updated absolute URLs to detect not only ```http://```, and ```https://```, but also ```//``` (no scheme), and ```www.{link}```.
+- Updated absolute URLs to detect not only ```http://```, and ```https://```, but also ```//``` (no scheme), and ```www.{location}```.
 
 ### Miscellaneous
 
