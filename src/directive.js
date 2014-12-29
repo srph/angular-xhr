@@ -11,6 +11,8 @@
       cache: '&requestCache', // If to be cached
       successCb: '=requestSuccess', // Callback to be executed if request was successful
       errorCb: '=requestError' // Callback to be executed if request was settled with an error
+      preAction: '&requestPreAction', // Callback to be executed before the request
+      postAction: '=requestPostAction' // Callback to be automatically executed after the request (final block)
     };
 
     // Directive properties
@@ -69,6 +71,8 @@
       * @return {promise}
       */
       function request(data) {
+        ( scope.preAction || angular.noop )(); // Execute pre
+        
         var options = {
           url: scope.url,
           type: scope.type,
@@ -78,7 +82,8 @@
 
         factory.request(options)
           .then(scope.successCb || angular.noop)
-          .catch(scope.errorCb || angular.noop);
+          .catch(scope.errorCb || angular.noop)
+          .finally(scope.postAction || angular.noop);
       }
     }
   }
