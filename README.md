@@ -20,7 +20,7 @@ You can send a ```POST``` to ```api/v1/users/``` with this one line of code:
 <button type="button" srph-xhr="api/v1/users" request-type="POST" request-data="formData">Create User</button>
 ```
 
-Instead of having something like which is, honestly, quite tedious:
+Instead of having something the code below which is, honestly, quite tedious in some instances:
 
 ```
 // user-create.controller.js
@@ -31,30 +31,12 @@ app.controller('UserCreateController', function($scope, $html) {
   }
 });
 
-[Let's Get Started!](#installation)
-
-// user-create.html
-<!-- template -->
+<!-- user-create.html -->
+<!-- input.. -->
 <button type="button" ng-click="request()">Create User</button>
 ```
 
-And it also works for forms!
-
-## Status
-
-I'd like to keep this library as simple as possible. As of ```0.2.1```:
-
-- [x] Send requests
-- [x] Smart URLs (Removing trailing slashes)
-- [x] Base URL
-- [x] Send headers, set base headers
-- [ ] \(Pre-send phase) Action / expression to execute before running the ```$http```
-- [ ] Send query parameters
-- [ ] File uploads
-
-It is working as it should, but it is **not** yet recommended or suitable for production.
-
-This is an on-going project, and I am in need contributors (especially feat requests).
+[Let's Get Started!](#installation)
 
 ## Installation
 
@@ -81,6 +63,22 @@ Specify the library (```angular-srph-xhr.js``` or ```angular-srph-xhr.min.js```)
 ## Usage
 
 Check the [API Reference, Usage](https://srph.github.io/angular-xhr/reference.html#api-reference-directive-usage)
+
+## Status
+
+I'd like to keep this library as simple as possible. As of ```0.2.1```:
+
+- [x] Send requests
+- [x] Smart URLs (Removing trailing slashes)
+- [x] Base URL
+- [x] Send headers, set base headers
+- [ ] \(Pre-send phase) Action / expression to execute before running the ```$http```
+- [ ] Send query parameters
+- [ ] File uploads
+
+It is working as it should, but it is **not** yet recommended or suitable for production.
+
+This is an on-going project, and I am in need contributors (especially feat requests).
 
 ## Docs / Examples
 
