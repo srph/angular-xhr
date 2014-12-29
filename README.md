@@ -10,6 +10,36 @@ Send ```$http``` requests with directives.
 - Explicitly address your XHRs.
 - Minus one dependency (```$http```) for your controller.
 
+### Why should I use this library?
+
+There are circumstances where a certain part of your app only has to send an ```$http``` request to an API, and we wouldn't want repetitive ```$http``` in our scripts.
+
+You can send a ```POST``` to ```api/v1/users/``` with this one line of code:
+
+```html
+<button type="button" srph-xhr="api/v1/users" request-type="POST" request-data="formData">Create User</button>
+```
+
+Instead of having something like which is, honestly, quite tedious:
+
+```
+// user-create.controller.js
+
+app.controller('UserCreateController', function($scope, $html) {
+  $scope.request = function() {
+  	// $http...
+  }
+});
+
+[Let's Get Started!](#installation)
+
+// user-create.html
+<!-- template -->
+<button type="button" ng-click="request()">Create User</button>
+```
+
+And it also works for forms!
+
 ## Status
 
 I'd like to keep this library as simple as possible. As of ```0.2.1```:
@@ -18,6 +48,7 @@ I'd like to keep this library as simple as possible. As of ```0.2.1```:
 - [x] Smart URLs (Removing trailing slashes)
 - [x] Base URL
 - [x] Send headers, set base headers
+- [ ] \(Pre-send phase) Action / expression to execute before running the ```$http```
 - [ ] Send query parameters
 - [ ] File uploads
 
@@ -33,10 +64,6 @@ You may grab the [build](https://cdn.rawgit.com/srph/angular-xhr/dist/angular-sr
 bower install angular-srph-xhr
 ```
 
-## Usage
-
-Check the [API Reference, Usage](https://srph.github.io/angular-xhr/reference.html#api-reference-directive-usage)
-
 While it is also possible to use the one provided by CDNs.
 
 ```html
@@ -50,6 +77,10 @@ Specify the library (```angular-srph-xhr.js``` or ```angular-srph-xhr.min.js```)
 <script src="cdn..../angular.min.js"></script>
 <script src="https://cdn.rawgit.com/srph/angular-xhr/dist/angular-srph-xhr.min.js"></script>
 ```
+
+## Usage
+
+Check the [API Reference, Usage](https://srph.github.io/angular-xhr/reference.html#api-reference-directive-usage)
 
 ## Docs / Examples
 
