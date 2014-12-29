@@ -35,9 +35,9 @@ $ bower install
 
 This library uses gulp to automate task (compiling, building, uglifying scripts).
 
-You can simply use ```gulp-default```.
+You can simply use ```gulp```.
 
-You may use ```gulp-server``` to test by accessing ```localhost:6969```; ```gulp-build``` to build scripts, ```gulp-uglify``` to uglify scripts; and ```gulp-default``` to run all tasks and watch changes.
+You may use ```gulp server``` to test by accessing ```localhost:6969```; ```gulp build``` to build scripts, ```gulp uglify``` to uglify scripts; and ```gulp default``` to run all tasks and watch changes.
 
 ## The Library
 
