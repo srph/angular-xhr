@@ -1,11 +1,11 @@
-# Changelogs
+Changelogs
 =====
 
 Tagged ```BC``` are *Breaking Changes*.
 
 ## v0.2.1 - December 28, 2014
 
-- Removed setCache typecasting of the provided argument
+- Removed setCache's typecasting of the provided argument
 
 ## v0.2.0 - December 28, 2014
 
@@ -14,30 +14,31 @@ Tagged ```BC``` are *Breaking Changes*.
 - ```BC``` Renamed ```setHeaders``` to ```setDefaultHeaders```
 - ```BC``` Fixed; Headers are now objects (was an array on the last version, ```v0.1.6```).
 - ```BC``` setDefaultHeaders throws an ```exception``` if provided argument was not an object
-- ```setCache``` now automatically types casts provided argument
+- ```setCache``` now automatically typecasts provided argument
 - Passing no arguments to ```setBaseURL``` automatically sets ```baseURL``` to ```''```
-- Allowing method chaining on setters
-- Moved URL patterns to its own angular constant component
+- Allowing method chaining on setters:
+```
+srphXhrFactoryProvider
+  .setBaseURL(/** .. */)
+  .setCache()
+  .setDefaultHeaders({ /** ... */ })
+```
+
+- Moved URL patterns to its own angular *constant*
 
 ### Factory
 
-- Fixed leading slashes (```/{link}```) causing request to be sent to wrong URLs (```{baseurl}//{link}).
+- Fixed leading slashes (```/{link}```) causing request to have extra ```/``` between the location and pathname (```{baseurl}//{pathname}).
 
 ### Directive
 
 - Removed controller
-- Moved everything to scope
+- Moved everything from controller's ```this``` to scope
 
 ### URL Pattern
 
 - Moved patterns
 - Updated absolute URLs to detect not only ```http://```, and ```https://```, but also ```//``` (no scheme), and ```www.{link}```.
-
-```js
-srphXhrFactoryProvider
-	.setBaseURL()
-	.setDefaultHeaders()
-```
 
 ### Miscellaneous
 
