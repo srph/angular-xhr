@@ -75,6 +75,10 @@ Check the [API Reference, Usage](https://srph.github.io/angular-xhr/reference.ht
 
 I'd like to keep this library as simple as possible.
 
+I am in need contributors (especially feat requests). I do not *usually* use the other features in the ```XHR``` or ```$http``` API (actually, I've never touched them), so please feel free to issue a feature.
+
+**As of 12/30/2014**, I am *technically* **stopping** continuous development of this project after the release of ```v0.3```. I'm not sure which kind of design to aim for. In the first place, this project was meant to be a concept. However, if you find it helpful, please feel free to issue a feature (for me to continue), to copy the idea, or to fork as you wish :).
+
 ### Status
 
 As of ```0.2.1```:
@@ -88,8 +92,6 @@ As of ```0.2.1```:
 - [ ] File uploads
 
 This is an alpha release, and it is **not** yet recommended or suitable for production.
-
-This is an on-going project, and I am in need contributors (especially feat requests). I do not *usually* use the other features in the ```XHR``` or ```$http``` API (actually, I've never touched them), so please feel free to issue a feature.
 
 ## Docs / Examples
 
