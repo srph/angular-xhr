@@ -7,7 +7,7 @@ angular-xhr
 Send ```$http``` requests with directives.
 
 - Less lines of code for your controllers.
-- Explicitly address your XHRs.
+- Explicitly address your requests in your templates.
 - Minus one dependency (```$http```) for your controller.
 
 ### Why should I use this library?
