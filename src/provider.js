@@ -13,14 +13,20 @@
     _this.setBaseURL = setBaseURL;
     _this.setDefaultHeaders = setDefaultHeaders;
     _this.setCache = setCache;
-    _this.setParams = setParams;
+    _this.setDefaultParams = setDefaultParams;
     _this.$get = $get;
 
     // Set defaults
     _this.baseURL = '';
-    _this.params = [];
     _this.defaultHeaders = {};
     _this.cache = false;
+    _this.params = {
+      "get": {},
+      "post": {},
+      "put": {},
+      "patch": {},
+      "delete": {}
+    };
 
     // -------------------------------------
 
@@ -59,8 +65,25 @@
      * Set default parameters for each request
      * @param {Array} params
      */
-    function setParams(params) {
-      _this.params = params;
+    function setDefaultParams(types, params) {
+      if ( !angular.isObject(params) ) {
+        throw new Error('Parameters must be an object!');
+      }
+
+      if ( angular.isArray(types) ) {
+        types.forEach(function(type) { _this.setDefaultParams(type, params); });
+      } else {
+        // Checks if the request type does not exist
+        if ( Object.keys(_this.params).indexOf( types.toLowerCase() ) == -1 ) {
+          throw new Error([
+            'Request type does not exist; must either be ',
+            'a GET, POST, PUT, PATCH, or DELETE'
+          ].join(''));
+        }
+
+        _this.params[types] = params;
+      }
+
       return _this;
     }
 
@@ -93,8 +116,8 @@
           , type = options.type || 'GET'
           , data = options.data
           , url  = getFullURL(options.url)
-          , headers = angular.extend(options.headers || {}, _this.defaultHeaders)
-          , params = _this.params
+          , headers = angular.extend({}, _this.defaultHeaders, options.headers || {})
+          , params = angular.extend({}, _this.params[type.toLowerCase()], options.params || {})
           , cache = options.cache || _this.cache;
 
         return $http({

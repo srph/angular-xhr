@@ -1,13 +1,13 @@
 API Reference
 =====
 
-This library provides a directive (```srph-xhr```) and provider (```srphXhrFactory```) to suit your needs.
+This library provides a directive (```srph-xhr```) and provider (```srphXhrFactoryProvider```) to suit your needs.
 
-## Directive
+# Directive
 
 This library offers a small, simple API provided through the ```srph-xhr``` directive.
 
-### Usage
+## Usage
 
 This code sends a ```GET``` to ```api/v1/users```.
 
@@ -17,7 +17,7 @@ This code sends a ```GET``` to ```api/v1/users```.
 
 Here are some examples with a button and form (which you most likely will use).
 
-### Button
+## Button
 
 This **button** sends a request to ```api/v1/users```(```srph-xhr```) as ```post```(```request-type```) with the data from your controller ```$scope```'s ```myFormData```(```request-data```)
 
@@ -30,7 +30,7 @@ This **button** sends a request to ```api/v1/users```(```srph-xhr```) as ```post
 </button>
 ```
 
-### Form
+## Form
 
 This **form** sends a request (on submit) to ```api/v1/users/{id}``` as ```put``` with the data from your controller ```$scope```'s ```myFormData```
 
@@ -43,24 +43,25 @@ This **form** sends a request (on submit) to ```api/v1/users/{id}``` as ```put``
 </button>
 ```
 
-### API
+## API
 
-You may use use both the attribute (```<div this-directive>```) and element forms (```<that-directive..></that-directive..>```) whatever addresses your needs.
+You may use use both the attribute (```<form srph-xhr>```) and element forms (```<srph-xhr></srph-xhr>```) whatever addresses your needs.
 
-Option | Type | Default | Description
------- | ---- | ------- | -----------
 srph-xhr (request-url) | string | '/' | URL of the request. Internally concatenates base URL; simply pass ```www```, ```http(s)``` for absolute urls
 request-type | string | 'get' | Type of request
 request-data | collection | {} | Data to be sent
 request-success | function | noop | success callback
 request-error | function | noop | error callback
-request-cache | expression (boolean) | (set cache to the ```provider```) | Cache the request
+request-cache | boolean | (fallback to ```provider``` cache) | Cache the request
+request-params | string (object) | ({}) | Send parameters.
+request-pre-action | expression | noop | Expression to be executed before the request
+request-post-action | expression | noop | Expression to be executed after the request (final block)
 
-## Provider
+# Provider
 
 Our provider (```srphXhrFactoryProvider```) allows you to set base urls, settings, and all that sort. While it is also possible to override them with the directives (check the [Directive API](#api-reference-directive-api)).
 
-### Usage
+## Usage
 
 Inject ```srphXhrFactoryProvider``` in your config, then invoke some methods available in the provider API
 
@@ -77,10 +78,9 @@ function config(srphXhrFactoryProvider, ..other dependencies) {
 }
 ```
 
-### API
+## API
 
-Option | Type | Default | Description
------- | ---- | ------- | -----------
 setBaseURL | string | '/' | Base URLs of the all requests. 
 setDefaultHeaders | object | {} | Default headers included in all requests.
 setCache | bool | false | Enable/disable cache by default in all requests.
+setDefaultParams | object | {} | Enable/disable cache by default in all requests.

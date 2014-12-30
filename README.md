@@ -10,7 +10,7 @@ Send ```$http``` requests with directives.
 - Explicitly address your requests in your templates.
 - Minus one dependency (```$http```) for your controller.
 
-### Why should I use this library?
+### Why?
 
 There are circumstances where a certain part of your app only has to send an ```$http``` request to an API, and repetitive ```$http``` in our controller can be tedious and unacceptable.
 
@@ -73,25 +73,27 @@ Check the [API Reference, Usage](https://srph.github.io/angular-xhr/reference.ht
 
 ## Important Notes
 
-I'd like to keep this library as simple as possible.
+I wrote this as proof-of-concept for utilizing directives to its limit, as written [here](https://medium.com/@srph/breaking-down-angularjs-to-smaller-components-f2ab70a104d0). I'd like to keep this library as simple as possible.
 
 I am in need contributors (especially feat requests). I do not *usually* use the other features in the ```XHR``` or ```$http``` API (actually, I've never touched them), so please feel free to issue a feature.
 
-**As of 12/30/2014**, I am *technically* **stopping** continuous development of this project after the release of ```v0.3```. I'm not sure which kind of design to aim for. In the first place, this project was meant to be a concept. However, if you find it helpful, please feel free to issue a feature (for me to continue), to copy the idea, or to fork as you wish :).
+**As of 12/30/2014**, I am *technically* **stopping** continuous development of this project after the release of ```v0.3```. I'm not sure which kind of design to aim for. In the first place, this project was meant to be a proof-of-concept. However, if you find it helpful, please feel free to issue a feature (for me to continue), to copy the idea, or to fork as you wish :).
+
+After months of fiddling with project, I realized that this could be paired well with [Restangular](https://github.com/mgonto/restangular), which is a great library on top of ```$http```.
 
 ### Status
 
-As of ```0.2.1```:
+As of ```0.3```:
 
 - [x] Send requests
 - [x] Smart URLs (Removing trailing slashes)
 - [x] Base URL
 - [x] Send headers, set base headers
-- [ ] \(Pre-send phase) Action / expression to execute before running the ```$http```
-- [ ] Send query parameters
+- [x] \(Pre-send phase) Action / expression to execute before running the ```$http```
+- [x] Send query parameters
 - [ ] File uploads
 
-This is an alpha release, and it is **not** yet recommended or suitable for production.
+This is an alpha release, and it is **not** recommended or suitable for production.
 
 ## Docs / Examples
 

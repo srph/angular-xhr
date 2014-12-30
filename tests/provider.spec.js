@@ -12,7 +12,7 @@ describe('service and provider', function() {
   it('should method chain when calling the setter methods', function() {
     expect(provider.setBaseURL()).toEqual(provider);
     expect(provider.setCache()).toEqual(provider);
-    expect(provider.setParams()).toEqual(provider);
+    expect(provider.setDefaultParams('get', {})).toEqual(provider);
     expect(provider.setDefaultHeaders({ "key": "value" })).toEqual(provider);
   });
 
@@ -29,6 +29,33 @@ describe('service and provider', function() {
           'Headers must be an object with the ',
           'following format { "key": value }'
         ].join('')));
+    });
+  });
+
+  describe('setting default params', function() {
+    it('should throw an error if the provided params is not an object', function() {
+      expect(function() { provider.setDefaultParams('get', 'asd'); })
+        .toThrow(new Error('Parameters must be an object!'));
+    });
+
+    it('should throw an error if the provided request type does not exist', function() {
+      expect(function() { provider.setDefaultParams('asd', {}); })
+        .toThrow(new Error([
+          'Request type does not exist; must either be ',
+          'a GET, POST, PUT, PATCH, or DELETE'
+        ].join('')));
+    });
+
+    it('should have the new set request type', function() {
+      provider.setDefaultParams('get', { "yolo": '5' });
+      expect(provider.params.get).toEqual({ "yolo": '5' });
+    });
+
+    it('should execute a recursion when an array is passed as request type', function() {
+      provider.setDefaultParams(['get', 'post'],   { "yolo": '5' });
+      expect(provider.params.get).toEqual({ "yolo": '5' });
+      expect(provider.params.post).toEqual({ "yolo": '5' });
+      expect(provider.params.get).toEqual(provider.params.post);
     });
   });
 

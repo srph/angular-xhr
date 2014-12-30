@@ -9,6 +9,7 @@
       url: '@srphXhr', // URL of the request
       type: '@requestType', // Type of the request
       data: '=requestData', // Data to be sent with the request
+      params: '@requestParams', // Query parameters (?key=value&key2=value)
       cache: '&requestCache', // If to be cached
       successCb: '&requestSuccess', // Callback to be executed if request was successful
       errorCb: '&requestError', // Callback to be executed if request was settled with an error
@@ -72,12 +73,23 @@
       * @return {promise}
       */
       function request(data) {
+        var params;
+
+        if ( !angular.isUndefined(scope.params) ) {
+          params = JSON.parse(scope.params);
+
+          if ( !angular.isObject(params) ) {
+            throw new Error('Parameters must be an object!');
+          }
+        }
+
         ( scope.preAction || angular.noop )(); // Execute pre
         
         var options = {
           url: scope.url,
           type: scope.type,
           cache: scope.cache,
+          params: params || {},
           data: data
         };
 

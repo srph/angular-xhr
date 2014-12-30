@@ -3,6 +3,40 @@ Changelogs
 
 Tagged ```BC``` are *Breaking Changes*.
 
+## v0.3.0 - December 30, 2014
+
+### Provider
+
+- ```BC```/ ```setParams``` renamed to ```setDefaultParams```. Usage has also been changed.
+```js
+// srphXhrFactory.setDefaultParams(<string>, <object>);
+srphXhrFactory.setDefaultParams('get', { "key": "value" });
+```
+- Parameters are now being sent in the request, overriden / extended by the passed parameters in the directive.
+
+### Directives
+
+- Added feature to set q parameters with the directive
+
+```html
+<button
+  srph-xhr="..."
+  request-params={ 'key': 'value' }>
+  Request..
+ </button>
+```
+
+- Added pre / post actions. Functions to be executed before and after the request.
+
+```
+<button
+  srph-xhr="..."
+  request-post-action="loading = false"
+  request-pre-action="loading = true">
+  Request..
+</button>
+```
+
 ## v0.2.1 - December 28, 2014
 
 - Removed ```setCache```'s typcasting of the provided argument. ```setCache``` no longer evaluates the given expression by itself.

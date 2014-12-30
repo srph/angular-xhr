@@ -13,6 +13,7 @@ describe('directive (form / button)', function() {
     $scope = $rootScope.$new();
 
     $httpBackend.when('GET', 'pogi.com').respond(200);
+    $httpBackend.when('GET', 'pogi.com?key=5').respond(200);
   }));
 
   describe('proper binding of event listener', function() {
@@ -44,6 +45,28 @@ describe('directive (form / button)', function() {
       expect('click').toHaveBeenTriggeredOn(element);
       expect(spyEvt).toHaveBeenTriggered();
       $httpBackend.flush();
+    });
+  });
+
+  describe('params', function() {
+    it('should be a blank object if not defined', function() {
+      $httpBackend.expectGET('pogi.com');
+      element = compile('<button type="button" srph-xhr="pogi.com">Request</button>');
+      element.triggerHandler('click');
+      $httpBackend.flush();
+    });
+
+    it('should send to ?key=value if defined', function() {
+      $httpBackend.expectGET('pogi.com?key=5');
+      element = compile("<button type='button' srph-xhr='pogi.com' request-params='{ \"key\": 5 }'>Request</button>");
+      element.triggerHandler('click');
+      $httpBackend.flush();
+    });
+
+    it('should throw an error if passed param is not an object', function() {
+      element = compile("<button type='button' srph-xhr='pogi.com' request-params='true'>Request</button>");
+      expect(function() { element.triggerHandler('click'); })
+        .toThrow(new Error('Parameters must be an object!'));
     });
   });
 
