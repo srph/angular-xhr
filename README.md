@@ -136,7 +136,7 @@ View [file](https://github.com/srph/angular-xhr/blob/master/CHANGELOG.MD).
 **angular-xhr** © 2014+, Kier Borromeo (srph). Released under the [MIT](http://mit-license.org/) License.<br>
 
 > [srph.github.io](http://srph.github.io) &nbsp;&middot;&nbsp;
-> GitHub [@rstacruz](https://github.com/srph) &nbsp;&middot;&nbsp;
-> Twitter [@rstacruz](https://twitter.com/_srph)
+> GitHub [@srph](https://github.com/srph) &nbsp;&middot;&nbsp;
+> Twitter [@_srph](https://twitter.com/_srph)
 
 [MIT]: http://mit-license.org/
