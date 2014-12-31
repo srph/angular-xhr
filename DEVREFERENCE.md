@@ -44,7 +44,7 @@ $ gulp # builds the scripts, opens a webserver, and watches for changes
 $ gulp server # opens a web server; accessible by ```localhost:6969```
 $ gulp build # builds the scripts
 $ gulp uglify # uglifies the scripts
-```.
+```
 
 ## The Library
 
