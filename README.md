@@ -130,3 +130,13 @@ View [file](https://github.com/srph/angular-xhr/blob/master/CHANGELOG.MD).
 - [Introduction Docs](http://srph.github.io/angular-xhr/)
 - [API Docs](http://srph.github.io/angular-xhr/reference.html)
 - [Developer Docs](http://srph.github.io/angular-xhr/dev-reference.html)
+
+## Acknowledgements
+
+**angular-xhr** © 2014+, Kier Borromeo (srph). Released under the [MIT](http://mit-license.org/) License.<br>
+
+> [srph.github.io](http://srph.github.io) &nbsp;&middot;&nbsp;
+> GitHub [@rstacruz](https://github.com/srph) &nbsp;&middot;&nbsp;
+> Twitter [@rstacruz](https://twitter.com/_srph)
+
+[MIT]: http://mit-license.org/
