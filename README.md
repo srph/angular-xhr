@@ -1,8 +1,9 @@
-angular-xhr
+rangular-xhr
 ==============
 
 [![Build Status](https://travis-ci.org/srph/angular-xhr.svg)](https://travis-ci.org/srph/angular-xhr)
-[![Dependencies Status](https://david-dm.org/srph/angular-xhr.png)](https://david-dm.org/srph/angular-xhr.png)
+[![Bower version](https://badge.fury.io/bo/angular-srph-xhr.svg)](http://badge.fury.io/bo/angular-srph-xhr)
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 Send ```$http``` requests with directives.
 
@@ -47,7 +48,14 @@ Getting started is very easy.
 
 ### Installation
 
-You may grab the [build](https://cdn.rawgit.com/srph/angular-xhr/dist/angular-srph-xhr.js), or from bower!
+Add this library (```angular-srph-xhr.js``` or ```angular-srph-xhr.min.js```) in your project after angular, like so. It **must be** in proper order.
+
+```html
+<script src="/path/to/angular.min.js"></script>
+<script src="/path/to/angular-srph-xhr.min.js"></script>
+```
+
+Angular-XHR **is** available via [Bower]!
 
 ```bash
 bower install angular-srph-xhr
@@ -60,13 +68,6 @@ While it is also possible to use the one provided by CDNs.
 <script src="https://cdn.rawgit.com/srph/angular-xhr/dist/angular-srph-xhr.min.js"></script>
 ```
 
-Specify the library (```angular-srph-xhr.js``` or ```angular-srph-xhr.min.js```) in your HTML after angular, like so. It **must be** in proper order.
-
-```html
-<script src="cdn..../angular.min.js"></script>
-<script src="https://cdn.rawgit.com/srph/angular-xhr/dist/angular-srph-xhr.min.js"></script>
-```
-
 ### Usage
 
 Check the [API Reference, Usage](https://srph.github.io/angular-xhr/reference.html#api-reference-directive-usage)
@@ -75,11 +76,11 @@ Check the [API Reference, Usage](https://srph.github.io/angular-xhr/reference.ht
 
 I wrote this as proof-of-concept for utilizing directives to its limit, as written [here](https://medium.com/@srph/breaking-down-angularjs-to-smaller-components-f2ab70a104d0). I'd like to keep this library as simple as possible.
 
-I am in need contributors (especially feat requests). I do not *usually* use the other features in the ```XHR``` or ```$http``` API (actually, I've never touched them), so please feel free to issue a feature.
+I am *in need* of contributors (especially feat requests). I have not yet touched the other features in the ```XHR``` or ```$http``` API, so please feel free to issue a feature.
 
-**As of 12/30/2014**, I am *technically* **stopping** continuous development of this project after the release of ```v0.3```. I'm not sure which kind of design to aim for. In the first place, this project was meant to be a proof-of-concept. However, if you find it helpful, please feel free to issue a feature (for me to continue), to copy the idea, or to fork as you wish :).
+**As of 12/30/2014**, I am *technically* **stopping** continuous development of this project after the release of ```v0.3```. I'm not sure which kind of design to aim for. If you find it helpful, please feel free to issue a feature (for me to continue), to copy the idea, or to fork as you wish.
 
-After months of fiddling with project, I realized that this could be paired well with [Restangular](https://github.com/mgonto/restangular), which is a great library on top of ```$http```.
+After months of fiddling with the project, I realized that this could be paired well with [Restangular](https://github.com/mgonto/restangular), which is a great library on top of ```$http```.
 
 ### Status
 
