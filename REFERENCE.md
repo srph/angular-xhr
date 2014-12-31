@@ -47,15 +47,130 @@ This **form** sends a request (on submit) to ```api/v1/users/{id}``` as ```put``
 
 You may use use both the attribute (```<form srph-xhr>```) and element forms (```<srph-xhr></srph-xhr>```) whatever addresses your needs.
 
-srph-xhr (request-url) | string | '/' | URL of the request. Internally concatenates base URL; simply pass ```www```, ```http(s)``` for absolute urls
-request-type | string | 'get' | Type of request
-request-data | collection | {} | Data to be sent
-request-success | function | noop | success callback
-request-error | function | noop | error callback
-request-cache | boolean | (fallback to ```provider``` cache) | Cache the request
-request-params | string (object) | ({}) | Send parameters.
-request-pre-action | expression | noop | Expression to be executed before the request
-request-post-action | expression | noop | Expression to be executed after the request (final block)
+### srph-xhr
+*Type* ```string```
+*Default* ```/```
+
+Our main directive, also passed value is the URL of the request. Internally concatenates base URL; simply pass ```www```, ```http(s)``` for absolute urls.
+
+```html
+<button srph-xhr="api/v1/users"></button>
+<button srph-xhr="http://developer.github.com/api/v1/users"></button>
+```
+
+### request-type
+*Type* ```string``` 
+*Default* ```get```
+
+The type of http request to be made (```GET```, ```POST```, ```PUT```, ```PATCH```, ```DELETE```).
+
+```html
+<button srph-xhr="..." request-type="post"></button>
+```
+
+### request-data
+*Type* ```object```
+*Default* ```{}```
+
+Data to be sent with the request.
+
+```html
+<!-- myFormData is an object you created in $scope -->
+<button srph-xhr="https://yolo.com" request-data="myFormData">
+```
+
+### request-cache
+*Type* ```boolean```
+*Default* fallback to ```provider``` cache)
+
+Cache the request.
+
+```html
+<button srph-xhr="https://yolo.com" request-cache="true">
+```
+
+### request-params
+*Type* string (object)
+*Default* ```{}```
+
+Add query parameters to the request (```https://mysite.com/?key1=value&key2=..```).
+
+```html
+<!-- myFormData is an object you created in $scope -->
+<button srph-xhr="https://yolo.com" request-params="{ 'x': 5 }">
+```
+
+### request-success
+*Type* ```function```
+*Default* ```noop```
+
+Callback / expression to be performed when the request is a success.
+
+```html
+<button srph-xhr="https://yolo.com" request-success="alert(response.data.message)">
+```
+
+In ```request-success```, you are provided ```response```, ```config```, ```headers```, and ```status``` from the executed ```$http``` request.
+
+```html
+<button srph-xhr="https://yolo.com" request-success="mySuccessCallback(response, status, headers, config)">
+<button srph-xhr="https://yolo.com" request-success="formSuccess = response.data.message">
+```
+
+### request-error
+*Type* ```function```
+*Default* ```noop```
+
+Callback / expression to be performed when the request is a success.
+
+```html
+<button
+  srph-xhr="https://yolo.com"
+  request-error="alert(response.data.message)">
+</button>
+```
+
+In ```request-error```, you are provided ```response```, ```config```, ```headers```, and ```status``` from the executed ```$http``` request.
+
+```html
+<button
+  srph-xhr="https://yolo.com"
+  request-error="myErrorCallback(response, status, headers, config)">
+</button>
+
+<button
+  srph-xhr="https://yolo.com"
+  request-error="formErrors = response.data.errors">
+</button>
+```
+
+### request-pre-action
+*Type* ```expression``` / ```function```
+*Default* ```noop```
+
+Callback / expression to be executed before the request.
+
+```html
+<button
+  srph-xhr="..."
+  request-pre-action="loading = true">
+</button>
+```
+
+### request-post-action
+*Type* ```expression``` / ```function```
+*Default* ```noop```
+
+Expression to be executed after the request (final block).
+
+```html
+<button
+  srph-xhr="..."
+  request-post-action="loading = false">
+</button>
+```
+
+Like [```request-success```]() and [```request-error```](), you are provided ```response```, ```config```, ```headers```, and ```status``` from the executed ```$http``` request.
 
 # Provider
 
