@@ -1,43 +1,50 @@
 Developer Reference 
 =====
 
-* This docs was built for potential contributors & developers of the library. If you only need the API, go to the [API Reference docs](//github.com/srph/angular-xhr/reference.html).
+\* This docs was built for potential contributors & developers of the library. If you only need the API, go to the [API Reference docs](//github.com/srph/angular-xhr/reference.html).
 
 Reminder that I would like this library to be as simple as possible.
 
 ## Building from source
 
-To build, you are required to install npm and bower.
+### Requirements 
+To build, you are required to install npm, gulp and bower.
+
+```bash
+$ sudo apt-get install npm  # install npm
+$ npm install -g gulp bower # install gulp and bower with npm
+```
 
 ### Cloning
 
-Clone the source (```https://github.com/srph/angular-xhr.git```).
+Pull the repository
 
 ```bash
-$ git clone https://github.com/srph/angular-xhr.git
+$ git init
+$ git remote add origin https://github.com/srph/angular-xhr.git
+$ git pull && git checkout master
 ```
 
 ### Installing dependencies
 
-On the root folder of the cloned ```angular-xhr```, install npm dependencies.
+In our root folder, run npm and bower.
 
 ```bash
-$ npm install
-```
-
-Afterwards, install our bower dependencies.
-
-```bash
-$ bower install
+$ npm install & bower install
 ```
 
 ### Automation / Building scripts
 
-This library uses gulp to automate task (compiling, building, uglifying scripts).
+\* This library uses gulp to automate task (compiling, building, uglifying scripts).
 
-You can simply use ```gulp```.
+Make sure to run the task in the *root* folder.
 
-You may use ```gulp server``` to test by accessing ```localhost:6969```; ```gulp build``` to build scripts, ```gulp uglify``` to uglify scripts; and ```gulp default``` to run all tasks and watch changes.
+```bash
+$ gulp # builds the scripts, opens a webserver, and watches for changes
+$ gulp server # opens a web server; accessible by ```localhost:6969```
+$ gulp build # builds the scripts
+$ gulp uglify # uglifies the scripts
+```.
 
 ## The Library
 
