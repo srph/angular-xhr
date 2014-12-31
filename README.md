@@ -1,4 +1,4 @@
-rangular-xhr
+angular-xhr
 ==============
 
 [![Build Status](https://travis-ci.org/srph/angular-xhr.svg)](https://travis-ci.org/srph/angular-xhr)
@@ -78,6 +78,8 @@ I wrote this as proof-of-concept for utilizing directives to its limit, as writt
 
 I am *in need* of contributors (especially feat requests). I have not yet touched the other features in the ```XHR``` or ```$http``` API, so please feel free to issue a feature.
 
+### Announcements
+
 **As of 12/30/2014**, I am *technically* **stopping** continuous development of this project after the release of ```v0.3```. I'm not sure which kind of design to aim for. If you find it helpful, please feel free to issue a feature (for me to continue), to copy the idea, or to fork as you wish.
 
 After months of fiddling with the project, I realized that this could be paired well with [Restangular](https://github.com/mgonto/restangular), which is a great library on top of ```$http```.
@@ -95,6 +97,12 @@ As of ```0.3```:
 - [ ] File uploads
 
 This is an alpha release, and it is **not** recommended or suitable for production.
+
+### Name
+
+Yes, this is very misleading.
+
+However, it was a wiser decision to spend my free time on studying (```$http```, Angular, etc..), and updating the library, instead of changing lots of parts of the docs, changing lots of links, as well as re-registering on [Bower]. Also, given the fact that this is *merely* a proof-of-concept, and currently in ```alpha```.
 
 ## Docs / Examples
 
