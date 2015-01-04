@@ -5,16 +5,28 @@ describe('directive (form / button)', function() {
   var $compile, $rootScope;
   var $httpBackend;
   var $scope;
-  beforeEach(module('srph.xhr'));
-  beforeEach(inject(function(_$compile_, _$rootScope_, _$httpBackend_) {
-    $compile = _$compile_;
-    $rootScope = _$rootScope_;
-    $httpBackend = _$httpBackend_;
-    $scope = $rootScope.$new();
+  var $controllerProvider;
+  var $controller;
+
+  beforeEach(function() {
+    angular
+      .module('srph.xhr.test', [])
+      .config(function(_$controllerProvider_) { $controllerProvider = _$controllerProvider_ });
+
+    module('srph.xhr', 'srph.xhr.test');
+    inject(function() { });
+
+    inject(function(_$compile_, _$rootScope_, _$httpBackend_, _$controller_) {
+      $compile = _$compile_;
+      $rootScope = _$rootScope_;
+      $httpBackend = _$httpBackend_;
+      $scope = $rootScope.$new();
+      $controller = _$controller_;
+    });
 
     $httpBackend.when('GET', 'pogi.com').respond(200);
     $httpBackend.when('GET', 'pogi.com?key=5').respond(200);
-  }));
+  });
 
   describe('proper binding of event listener', function() {
     it('should call an XHR on submit if it is a form', function() {
@@ -68,6 +80,44 @@ describe('directive (form / button)', function() {
       expect(function() { element.triggerHandler('click'); })
         .toThrow(new Error('Parameters must be an object!'));
     });
+  });
+
+  describe('preAction', function() {
+    it('should halt the whole fn if it returns false', function() {
+      $controllerProvider.register('TestCtrl', function($scope) {
+        $scope.x = function() { return false; }
+      });
+
+      var $controllerProviderScope = $rootScope.$new();
+      var controller = $controller('TestCtrl', { $scope: $controllerProviderScope });
+      expect($controllerProviderScope.x()).toBe(false);
+
+      element = compile([
+        "<div ng-controller='TestCtrl'>",
+        "<button type='button' srph-xhr='pogi.com' request-pre-action='x()'>Request</button>",
+        "</div"
+      ].join(''));
+
+      element.triggerHandler('click');
+    });
+
+    it('should continue the whole fn whatever it returns', function() {
+      $controllerProvider.register('TestCtrl', function($scope) {
+        $scope.x = function() { return true; }
+      });
+
+      var $controllerProviderScope = $rootScope.$new();
+      var controller = $controller('TestCtrl', { $scope: $controllerProviderScope });
+      expect($controllerProviderScope.x()).toBe(true);
+
+      element = compile([
+        "<div ng-controller='TestCtrl'>",
+        "<button type='button' srph-xhr='pogi.com' request-pre-action='x()'>Request</button>",
+        "</div"
+      ].join(''));
+
+      element.triggerHandler('click');
+    })
   });
 
   afterEach(function() {

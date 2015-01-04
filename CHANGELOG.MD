@@ -1,6 +1,12 @@
 Changelogs
 =====
 
+## v0.3.1 - January 4, 2015
+
+### Directive
+
+- Pre-action can now conditionally cancel the whole request.
+
 Tagged ```BC``` are *Breaking Changes*.
 
 ## v0.3.0 - December 30, 2014

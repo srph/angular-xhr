@@ -70,11 +70,23 @@
       * @see srphXhrFactroy
       * @see srphXhrFactory.request
       * @param  {Object} data [Data to be sent along with the request]
+      * @throws Error
       * @return {promise}
       */
       function request(data) {
+
+        // Execute pre-action, and simply halt execution
+        // of the whole request if it returns false
+        var preAction = scope.preAction();
+        if ( !angular.isUndefined(preAction)
+            && angular.isBoolean(preAction) && !preAction ) return;
+
         var params;
 
+        // JSON throws an error if the JSON format is incorrect
+        // However, non-objects are stil parsed.
+        // If the query parameters was defined while
+        // not an object, throw an error
         if ( !angular.isUndefined(scope.params) ) {
           params = JSON.parse(scope.params);
 
@@ -82,8 +94,6 @@
             throw new Error('Parameters must be an object!');
           }
         }
-
-        ( scope.preAction || angular.noop )(); // Execute pre
         
         var options = {
           url: scope.url,
@@ -98,36 +108,23 @@
           .catch(catchFn)
           .finally(finallyFn);
 
+        /** Shortcut to perform expression with given params */
+        function promiseFn(expression, r, s, h, c) {
+          expression({ response: r, status: s, headers: h, config: c });
+        }
+
         /**
          * Promise handlers
+         * @see promiseFn
+         * @params {object|array} r Response
+         * @params {string} s Status
+         * @params {object} h Headers
+         * @params {object} c Config
          */
 
-        function thenFn(response, status, headers, config) {
-          scope.successCb({
-            response: response,
-            status: status,
-            headers: headers,
-            config: config
-          });
-        }
-
-        function catchFn(response, status, headers, config) {
-          scope.errorCb({
-            response: response,
-            status: status,
-            headers: headers,
-            config: config
-          });
-        }
-
-        function finallyFn(response, status, headers, config) {
-          scope.postAction({
-            response: response,
-            status: status,
-            headers: headers,
-            config: config
-          });
-        }
+        function thenFn(r, s, h, c) { promiseFn(scope.successCb, r, s, h, c); }
+        function catchFn(r, s, h, c) { promiseFn(scope.errorCb, r, s, h, c); }
+        function finallyFn(r, s, h, c) { promiseFn(scope.postAction, r, s, h, c); }
       }
     }
   }

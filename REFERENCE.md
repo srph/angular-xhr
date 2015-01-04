@@ -157,6 +157,23 @@ Callback / expression to be executed before the request.
 </button>
 ```
 
+You may cancel the request (conditional request) by returning ```false```
+
+```js
+$scope.x = function() {
+  // e.g.,
+  // !confirm('Are you sure to delete this?');
+  if ( /** */ ) return false;
+}
+```
+
+```html
+<button
+  srph-xhr="..."
+  request-pre-action="x()">
+</button>
+```
+
 ### request-post-action
 *Type* ```expression``` / ```function```
 *Default* ```noop```

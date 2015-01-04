@@ -86,13 +86,15 @@ After months of fiddling with the project, I realized that this could be paired 
 
 ### Status
 
-As of ```0.3```:
+As of ```0.3.1```:
 
 - [x] Send requests
 - [x] Smart URLs (Removing trailing slashes)
 - [x] Base URL
 - [x] Send headers, set base headers
 - [x] \(Pre-send phase) Action / expression to execute before running the ```$http```
+- [x] Post-action / expression to execute after the $http (final block for the promise)
+- [x] Pre-action can cancel the request fn
 - [x] Send query parameters
 - [ ] File uploads
 
