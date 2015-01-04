@@ -68,6 +68,13 @@ While it is also possible to use the one provided by CDNs.
 <script src="https://cdn.rawgit.com/srph/angular-xhr/dist/angular-srph-xhr.min.js"></script>
 ```
 
+Add ```srph.xhr``` in your app's ```angular.module``` dependencies
+
+```js
+angular.module('myApp', [/** other deps */, 'srph.xhr'];
+```
+
+
 ### Usage
 
 Check the [API Reference, Usage](https://srph.github.io/angular-xhr/reference.html#api-reference-directive-usage)
